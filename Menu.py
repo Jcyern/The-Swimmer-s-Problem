@@ -14,7 +14,7 @@ panel = st.sidebar
 #Esto es lo que va en el inicio aun faltan cosas por terminar y ponerlo mas bonito
 #Son las pestañas
 with tab1 :
-
+    st.image("Imagenes/Nadador.jpg")
     col1 , col2 = st.columns([3,2])
     
     with col1:
