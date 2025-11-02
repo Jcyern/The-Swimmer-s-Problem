@@ -2,10 +2,10 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-import Logica.Numerica.Metodos_Numericos as MN
-import Logica.Edo.Edo_Log as EDO
-from Logica.Edo.Edo_Log import Valor_en_Y
-from Logica.Edo.Edo_Log import crear_grafico
+import Parte_A.Logica.Numerica.Metodos_Numericos as MN
+import Parte_A.Logica.Edo.Edo_Log as EDO
+from Parte_A.Logica.Edo.Edo_Log import Valor_en_Y
+from Parte_A.Logica.Edo.Edo_Log import crear_grafico
 
 def Met_Euler_VS(y0,h, a,v0,vs,x_min, x_max, y_min, y_max, ax):
     # Calcular la solución analítica

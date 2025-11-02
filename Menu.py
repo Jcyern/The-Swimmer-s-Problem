@@ -1,17 +1,13 @@
 import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-import Logica as lg
-from Logica.Edo.Edo_Log import ecuacion_diferencial
-import Control_Edo as ce
-from Control_Edo.Control import Metodos
-from Control_Numerica.Controles_de_Numerica import Metodos_Numerico, Errores_Numericos
+from Parte_A.Control_Edo.Control import Metodos
+from Parte_A.Control_Numerica.Controles_de_Numerica import Metodos_Numerico, Errores_Numericos
 
-# Configuración de la página
+#Titulo de la pagina
 st.set_page_config(page_title="Ecuaciones Diferenciales Ordinarias y Matematica Numerica", layout="wide")
+#Inicio
 st.title("Bienvenidos al proyecto de Ecuaciones Diferenciales Ordinarias junto con Matematica Numerica😎")
 
-#Crendo pestañas 
+#Pestañas y panel
 tab1, tab2, tab3= st.tabs(["🏠Inicio", "📚EDO", "📈Numerica"])
 panel = st.sidebar
 
@@ -40,7 +36,6 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
 
     with panel: #Panel que usaremos para pasar los parametros
         st.header("⚙️Parametros")
-        #st.header("📚 Ecuaciones Diferenciales Ordinarias")
         with st.expander("📚 Ecuaciones Diferenciales Ordinarias"):
             st.subheader("Condiciones iniciales")
             x0 = st.number_input("Valor inicial de x" , value = -0.50)
@@ -52,31 +47,30 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
             st.subheader("Rango de solución")
             x_min = st.number_input("x mínimo", value=-5.0)
             x_max = st.number_input("x máximo", value=5.0)
-            #valores_rep = st.number_input("Valores que se quieren representar", value = 20)
             y_min = st.number_input("y mínimo", value=-5.0)
             y_max = st.number_input("y máximo", value=5.0)
-            #valores_rep_y = st.number_input("Valores a representar por y", value= 2*y_max)
 
+            #Comprueba de que se desea saber el valor de la funcion evaluada en un punto 
             punto_ok = st.checkbox("Desea saber el valor en y para un x dado?🧐")
 
             if punto_ok:
                 xval = st.number_input("Valor de x", value=0e-14)
             else:
                 xval = 0.0
+            #Si desea la explicacion de la grafica 
             explicacion = st.checkbox("Explicacion de la grafica y del ejercicio")
 
 
-        #Llamada a la solucion de la edo
+    #Llamada a la solucion de la edo
     Metodos(x0, y0 ,a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok, explicacion)
 
 
-    
-with tab3:  #Este panel es para la parte de Numerica solo
+with tab3:  #Esta pestaña es para la parte de Numerica solo
     with panel:
+        #Es un panel que baja se me olvido el nombre de eso 
         with st.expander("🧮Matematica Numerica"):
-            xf = st.number_input("Valor que quiere calcular")
+            #xf = st.number_input("Valor que quiere calcular")
             h = st.number_input("Incremento", min_value=1e-14, max_value= 1000.000000, step=0.01, format="%.14f", value = 0.1)
-            #pasos = st.number_input("Cantidad de pasos")
 
             st.subheader("🔍 Comparación con Solución Analítica")
             comparar_analitica = st.checkbox(
@@ -102,7 +96,6 @@ with tab3:  #Este panel es para la parte de Numerica solo
                          y0,
                          x_min,
                          x_max,
-                         xf,
                          y_min,
                          y_max,
                          comparar_analitica,

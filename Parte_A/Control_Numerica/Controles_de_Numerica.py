@@ -2,12 +2,12 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from Control_Numerica.Numerica import Met_Euler_VS, Euler_MejoradoVS, RK4VS
-from Logica.Edo.Edo_Log import solucion_diferencial, Valor_en_Y, crear_grafico , ecuacion_diferencial
-from Logica.Numerica.Metodos_Numericos import Met_Euler, Met_Euler_Mejorado , Met_Runge_Kutta4
+from Parte_A.Control_Numerica.Numerica import Met_Euler_VS, Euler_MejoradoVS, RK4VS
+from Parte_A.Logica.Edo.Edo_Log import solucion_diferencial, Valor_en_Y, crear_grafico , ecuacion_diferencial
+from Parte_A.Logica.Numerica.Metodos_Numericos import Met_Euler, Met_Euler_Mejorado , Met_Runge_Kutta4
 
 
-def Metodos_Numerico(x0,y0, minx, maxx, punt_f, miny, maxy, comparar, metodo_comparar, a,v0,vs, h):
+def Metodos_Numerico(x0,y0, minx, maxx, miny, maxy, comparar, metodo_comparar, a,v0,vs, h):
         "Este metodo es como el que controla absolutamente todos los metodos de la parte numerica por lo que recibe absolutamente todos los parametros x0 es el valor incial y0 la imagen del valor incial intervalo es el intervalo en donde se van a evaluar los metodos numericos minx es el menor valor de x en el eje maxx es el mayor valor de x en el eje x  punt_f es al que se quiee llegar al evaluar los metodos numericos miny es el menor valor de y en el eje y maxy es el mayor valor de y en el eje y  tolerancia es el error que uno esta dispuesto a cometer comparar es el booleano que indica si el usuario desea ccomparar algun metodo con la solicion analitica metodo_a_comparar es el metodo o los metodos que se desean comparar a, v0, vs son las constantes de la cuacion diferencial h es el incremento en el que se estara moviendo la x "
         # Preparar rangos
         rango_x = np.arange(minx, maxx, 0.25)
@@ -108,11 +108,15 @@ def Metodos_Numerico(x0,y0, minx, maxx, punt_f, miny, maxy, comparar, metodo_com
                         ax=ax)
 
                         st.pyplot(fig)
+                st.subheader("ℹ️ Información")
+                st.info("El incremento se le podra pasar en el panel de los parametros en la parte de 🧮Matematica Numerica, "
+                "de la misma forma se puede seleccionar el metodo que sea comparar")
 
 def Errores_Numericos():
+        "Aqui se veran los errore numericos que ocurren con un ejemplo dado"
         st.header("Una vista a los errores numericos de los metodos de Euler, Euler Mejorado y Runge Kutta")
         st.markdown("Aqui se mostraran los errores numericos que se cometen con los metodos de Euler, Euler Mejorado y Runge Kutta, " \
-        "Determinado por los metodos y el tamaño del incremento en esta parte se le mostrara algunos ejemplos")
+        "con un incremento de 0.01")
         x = -0.5
         a = 0.5
         v0 = 9

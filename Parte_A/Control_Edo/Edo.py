@@ -1,16 +1,18 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-from Logica.Edo.Edo_Log import Isoclinas
-from Logica.Edo.Edo_Log import Valor_en_Y
-from Logica.Edo.Edo_Log import solucion_diferencial as sd
-from Logica.Edo.Edo_Log import crear_grafico as cg
+from Parte_A.Logica.Edo.Edo_Log import Isoclinas
+from Parte_A.Logica.Edo.Edo_Log import Valor_en_Y
+from Parte_A.Logica.Edo.Edo_Log import solucion_diferencial as sd
+from Parte_A.Logica.Edo.Edo_Log import crear_grafico as cg
 
 def Isoclinas_VS(Funcion, rango_x, rango_y,a, v0,xlim,ylim, x_min, y_min,vs):
     "Calcula las curvas solucion aproximadas al valor incial que se le pase"
     #LLamado a la Parte Logica
     X,Y,U,V = Isoclinas(Funcion, rango_x, rango_y,a,v0,vs)
 
+    #Introduccion
+    st.header("Observemos primero el metodo de las Isoclinas para poder sacar una aproximacion a la curva solucion de la siguiente ecuacion diferencial")
     #Partes de la grafica 
     fig, ax =  plt.subplots(figsize=(8, 6))
     ax.set_xlabel('Eje x', fontsize=12)
@@ -25,11 +27,12 @@ def Isoclinas_VS(Funcion, rango_x, rango_y,a, v0,xlim,ylim, x_min, y_min,vs):
     st.pyplot(fig)
     #Esta es la informacion del metodo de las isoclinas
     st.subheader("👩🏼‍💼Explicacion del Metodo de las Isoclinas")
-    st.markdown("El metodo de las isoclinas es una tecnica grafica que se utiliza para analizar la forma que toma la solucion de una ecuacion diferencial de primer orden sin necesidad de resolverla de manera explicita. Consiste en trazar lineas " \
-    " en darle valores a la derivada en diferentes puntos del plano xy y dado estas trazar segmentos pequeños que representen la pendiente en esos puntos. Al unir estos segmentos, se obtiene una aproximacion visual de las curvas solucion de la ecuacion diferencial. Este metodo es especialmente util para ecuaciones diferenciales no lineales o cuando la solucion explicita es dificil de obtener.")
+    st.markdown("El metodo de las isoclinas es una tecnica grafica que se utiliza para analizar la forma que toma la solucion de una ecuacion diferencial de primer orden sin necesidad de resolverla de manera explicita. Consiste " \
+    "en darle valores a la derivada en diferentes puntos del plano xy y dado estas trazar segmentos pequeños que representen la pendiente en esos puntos. Al unir estos segmentos, se obtiene una aproximacion visual de las curvas solucion de la ecuacion diferencial. Este metodo es especialmente util para ecuaciones diferenciales no lineales o cuando la solucion explicita es dificil de obtener.")
 
 def Solve_VS(x0,y0, a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok):
     "Resuelve la ecuacion diferencial con las condiciones iniciales"
+    st.header("Asi se ve la curva de la solucion analitica de nuestro problema 📊")
     # Creacion de Grafico
     solucion, ax2= plt.subplots(figsize=(8, 6))
     ax2.set_xlabel('Velocidad del nadador', fontsize=12)
@@ -54,6 +57,8 @@ def Solve_VS(x0,y0, a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok):
     else:
         ax2.legend()
         st.pyplot(solucion)
+    st.header("ℹ️ Información")
+    st.info("En el panel de 📚Ecuaciones Diferenciales Ordinarias se pueden cambiar los valores de la curva para observar el como se comporta en diferentes valores iniciales, asi como modificar los limites de los ejes y los parametros como la velocidad del nadador, la velocidad del rio o ancho de este.")
 
 
 def Valor_en_Y_VS(x,v0, vs, a, C):
@@ -72,7 +77,7 @@ def Explicacion(punto_ok, x0, y0, a, v0, vs, x, y, C):
             st.write(f"Valor en x = {x:.20f}: y = {y:.20f}")
 
         with col2:
-            st.subheader("ℹ️ Información")
+            st.subheader("🧑🏻‍🏫 Explicación del problema")
             st.markdown(
             f"El nadador comienza en la orilla izquierda del río en el punto ({x0}, {y0}). "
             f"La velocidad del río varía a lo largo de su ancho, siendo máxima en el centro y disminuyendo hacia las orillas. "
@@ -88,7 +93,7 @@ def Explicacion(punto_ok, x0, y0, a, v0, vs, x, y, C):
             st.write(f"Constante de Integracion C: {C:.16f}")
             st.write(f'Condicion inicial: ({x0}, {y0})')
         with col2:
-            st.subheader("ℹ️ Información")
+            st.subheader("🧑🏻‍🏫 Explicación del problema")
             st.markdown(
             f"El nadador comienza en la orilla izquierda del río en el punto ({x0}, {y0}). "
             f"La velocidad del río varía a lo largo de su ancho, siendo máxima en el centro y disminuyendo hacia las orillas. "
