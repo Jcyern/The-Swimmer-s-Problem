@@ -142,27 +142,45 @@ def Errores_Numericos():
         ax.legend()
         st.pyplot(grafico)
 
-        List_euler, List_euler_mejorado, List_runge_kutta = Calcular_Errores_Numericos_Puntos_Fijos(C, h)
-        data = {
-                'Puntos' : [ -1.5, -1, -0.5, 0, 0.5 , 1],
-                'Pert de Datos': [0, 0, 0, 0, 0, 0],
-                'Euler': List_euler,
-                'Error Relativo Euler': [0.0023979885, 0.341001282051, 3.8222, 3.31066666, 1.612625, 0.23929629629],
-                'Euler Mejorado': List_euler_mejorado,
-                'Error Relativo' : [0.00010632183, 0.00143589743, 0.0126, 0.010666666, 0.005416666, 0.00266666],
-                'Runge-Kutta 4': List_runge_kutta,
-                #'Error hacia alante': [],
-                #'Error hacia atras' : []
-                
-        }
-        st.header("Explicacion")
+        st.header("Explicacion 🧑🏻‍🏫")
         st.markdown("Aqui se pueden ver algunos resultados comparados con los metodos" \
         "tomamos como incremento el paso de 0.01 pero para un incremento más pequeño los metodos numericos serian mas exactos" \
         "en el caso de Runge Kutta el error relativo no es 0 pero como este es un metodo bastante aproximado  podemos observar que el error cometido es demasiado pequeño pero no  0")
-
+        List_euler, List_euler_mejorado, List_runge_kutta = Calcular_Errores_Numericos_Puntos_Fijos(C, h)
+        data = {
+                'Puntos' : [ -1.5, -1, -0.5, 0, 0.5 , 1],
+                'Euler': List_euler,
+                'EHAE' : [0.1669, 2.6521, 3.8222, 1.5728, 0.9297, 1.2922],
+                'Euler Mejorado': List_euler_mejorado,
+                'EHAEM' : [0.0074, 0.0112, 0.0126, 0.0128, 0.013, 0.0144],
+                'Runge-Kutta 4': List_runge_kutta,
+                'EHARK' : [0, 0, 0, 0, 0, 0],
+        }
         df = pd.DataFrame(data)
         st.table(df)
-
+        columna1, columna2 = st.columns(2)
+        with columna1:
+                errores = {
+                        'Puntos' : [ -1.5, -1, -0.5, 0, 0.5 , 1],
+                        'ERE': [0.0023979885, 0.341001282051, 3.8222, 3.31066666, 1.612625, 0.23929629629],
+                        'EREM' :  [0.00010632183, 0.00143589743, 0.0126, 0.010666666, 0.005416666, 0.00266666],
+                        'ERARK' : [0, 0, 0, 0, 0, 0],
+                }
+                df_errores = pd.DataFrame(errores)
+                st.table(df_errores)
+        with columna2:
+                st.success("EHAE: Error Hacia Alante de Euler\n\n EREM: Error Hacia Alante de Euler Mejorado\n\n EHARK: Error Hacia Alante de Runge Kutta\n\n" \
+                "ERE: Error Relativo de Euler\n\n EREM: Error Relativo de Euler Mejorado\n\n ERARK: Error Relativo de Runge Kutta")
+        st.success("Nota: Los errores se calcularon tomando como referencia la solucion analitica \n\n" \
+        "Todos los metodos numericos son O(n) en donde n = xf - xo/h \n\n" \
+        "xf : punto final \n\n" \
+        "xo : punto inicial \n\n" \
+        "h : incremento \n\n" 
+        "El orden de convergencia de los metodos numericos son \n\n" \
+        "Euler : O(h) \n\n" \
+        "Euler Mejorado : O(h²) \n\n" \
+        "Runge Kutta : O(h⁴)")
+        
 def Calcular_Errores_Numericos_Puntos_Fijos(C, h):
                 x = -2
                 y = Valor_en_Y(x, C, 9, 3, 0.5)
