@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 from typing import Optional, Tuple
-from numeric_logic import rhs, simulate_euler_maruyama
+from Parte_A.Logica.Numerica.partb_numeric_logic import rhs, simulate_euler_maruyama
 
 Path("figures").mkdir(exist_ok=True)
 
