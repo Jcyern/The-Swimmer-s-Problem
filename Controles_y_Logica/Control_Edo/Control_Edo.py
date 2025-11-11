@@ -1,10 +1,9 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-import Parte_A.Control_Edo.Edo as ce
-import Parte_A.Logica as lg
-from Parte_A.Logica.Edo.Edo_Log import ecuacion_diferencial
-from Parte_A.Control_Edo.Edo import Solve_VS , Explicacion, Isoclinas_VS, Valor_en_Y_VS
+import Controles_y_Logica.Logica as lg
+from Controles_y_Logica.Logica.Edo.Edo_Log import ecuacion_diferencial
+from Controles_y_Logica.Control_Edo.Isoclinas_y_Solucion import Solve_VS , Explicacion, Isoclinas_VS, Valor_en_Y_VS
 
 def Metodos(x0, y0 ,a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok, explicacion):
         # Estos son los rangos que se preparan para todas las funciones
