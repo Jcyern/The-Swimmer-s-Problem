@@ -26,13 +26,13 @@ def Plano_Fase( dx , dy, range_x: tuple , range_y:tuple, margen ):
             U[i,j]= dvdt_dydt[0]/Norma
             V[i,j]= dvdt_dydt[1]/Norma
     
-    # plt.quiver(X, Y, U, V, color='darkblue' , alpha = 0.8)    # Flechas muy grandes
-    # plt.scatter(X, Y, color='red', s=5, zorder=5) 
-    # plt.xlabel ("velocidad")
-    # plt.ylabel ("altura")
-    # plt.title("Plano de Fase")
-    # plt.grid(True, alpha=0.3)
-    # plt.show()
+    plt.quiver(X, Y, U, V, color='darkblue' , alpha = 0.8,scale = 35)    # Flechas muy grandes
+    plt.scatter(X, Y, color='red', s=5, zorder=5) 
+    plt.xlabel ("velocidad")
+    plt.ylabel ("altura")
+    plt.title("Plano de Fase")
+    plt.grid(True, alpha=0.3)
+    plt.show()
 
 
-Plano_Fase( 4 , 4, (-20,20) , (-20,20), 5) 
+Plano_Fase( 4 , 4, (-20,20) , (-20,20), 30) 
