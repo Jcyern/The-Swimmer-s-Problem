@@ -1,6 +1,6 @@
 import streamlit as st
-from Parte_A.Control_Edo.Control import Metodos
-from Parte_A.Control_Numerica.Controles_de_Numerica import Metodos_Numerico, Errores_Numericos
+from Controles_y_Logica.Control_Edo.Control_Edo import Metodos
+from Controles_y_Logica.Control_Numerica.Controles_de_Numerica import Metodos_Numerico, Errores_Numericos
 
 #Titulo de la pagina
 st.set_page_config(page_title="Ecuaciones Diferenciales Ordinarias y Matematica Numerica", layout="wide")

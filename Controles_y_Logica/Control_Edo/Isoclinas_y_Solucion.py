@@ -1,10 +1,10 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-from Parte_A.Logica.Edo.Edo_Log import Isoclinas
-from Parte_A.Logica.Edo.Edo_Log import Valor_en_Y
-from Parte_A.Logica.Edo.Edo_Log import solucion_diferencial as sd
-from Parte_A.Logica.Edo.Edo_Log import crear_grafico as cg
+from Controles_y_Logica.Logica.Edo.Edo_Log import Isoclinas
+from Controles_y_Logica.Logica.Edo.Edo_Log import Valor_en_Y
+from Controles_y_Logica.Logica.Edo.Edo_Log import solucion_diferencial as sd
+from Controles_y_Logica.Logica.Edo.Edo_Log import crear_grafico as cg
 
 def Isoclinas_VS(Funcion, rango_x, rango_y,a, v0,xlim,ylim, x_min, y_min,vs):
     "Calcula las curvas solucion aproximadas al valor incial que se le pase"

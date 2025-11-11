@@ -2,9 +2,9 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from Parte_A.Control_Numerica.Numerica import Met_Euler_VS, Euler_MejoradoVS, RK4VS
-from Parte_A.Logica.Edo.Edo_Log import solucion_diferencial, Valor_en_Y, crear_grafico , ecuacion_diferencial
-from Parte_A.Logica.Numerica.Metodos_Numericos import Met_Euler, Met_Euler_Mejorado , Met_Runge_Kutta4
+from Controles_y_Logica.Control_Numerica.Metodos import Met_Euler_VS, Euler_MejoradoVS, RK4VS
+from Controles_y_Logica.Logica.Edo.Edo_Log import solucion_diferencial, Valor_en_Y, crear_grafico , ecuacion_diferencial
+from Controles_y_Logica.Logica.Numerica.Metodos_Numericos import Met_Euler, Met_Euler_Mejorado , Met_Runge_Kutta4
 
 
 def Metodos_Numerico(x0,y0, minx, maxx, miny, maxy, comparar, metodo_comparar, a,v0,vs, h):
