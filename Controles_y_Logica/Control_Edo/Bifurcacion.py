@@ -1,53 +1,32 @@
-"""ode_viz.py
-Visualizaciones para la parte de EDO.
-Importa las funciones desde ode_logic.py y produce figuras.
-Cada función devuelve (fig, ax) y guarda la figura si se pasa `fname`.
-"""
-
-import matplotlib.pyplot as plt
-from pathlib import Path
 import numpy as np
-from typing import Optional, Tuple
-from ode_logic import solve_ode, mu_sweep_mean
+import streamlit as st
+import matplotlib.pyplot as plt
+from Controles_y_Logica.Logica.Edo.Bifurcacion_Log import estabilidad_punto_fijo
 
-Path("figures").mkdir(exist_ok=True)
+def Bifurcacion(miu_min, miu_max_, valores_rep, x_min, x_max, y_min, y_max):
+    miu = np.linspace(miu_min, miu_max_, valores_rep)
+    miu_estables, x_estables, miu_inestables, x_inestables = estabilidad_punto_fijo(miu)
+    
+    #Grafica
+    fix , ax = plt.subplots(figsize=(8,6))
+    ax.plot(miu_estables, x_estables, 'g', label='Puntos Fijos Estables')
+    ax.plot(miu_inestables, x_inestables, 'r--', label='Puntos Fijos Inestables')
+    
+    ax.set_xlim(x_min, x_max)
+    ax.set_ylim(y_min, y_max)
+    ax.set_xlabel('Parámetro μ', fontsize=12)
+    ax.set_ylabel('Puntos Fijos (x*)', fontsize=12)
+    ax.set_title('Diagrama de Bifurcación: ẋ = μx - x²', fontsize=14)
+    plt.legend()
+    plt.grid()
+    st.pyplot(fix)
+    columna1, columna2 = st.columns(2)
+    with columna1:
+        st.subheader("📊 Datos del Diagrama de Bifurcación")
+        st.write(f'Rango de μ: [{miu_min}, {miu_max_}]')
+        st.write(f'Número de puntos evaluados: {valores_rep}')
 
-def plot_trajectory(mu: float=1.0, z0: float=0.1, T: float=80.0,
-                    t_eval: Optional[np.ndarray]=None, fname: Optional[str]='figures/ode_trajectory.png') -> Tuple[plt.Figure, plt.Axes]:
-    """Traza la solución determinista usando solve_ode y devuelve (fig, ax).
-    Si `fname` no es None guarda la figura en disco.
-    """
-    if t_eval is None:
-        t_eval = np.linspace(0.0, T, 2001)
-    t, z = solve_ode(mu, z0=z0, t_span=(0.0, T), t_eval=t_eval)
-    fig, ax = plt.subplots(figsize=(8,4))
-    ax.plot(t, z, label=f"mu={mu}")
-    ax.set_xlabel("t"); ax.set_ylabel("z(t)")
-    ax.set_title("Trayectoria temporal de z(t)")
-    ax.grid(True)
-    ax.legend()
-    plt.tight_layout()
-    if fname:
-        plt.savefig(fname, dpi=300)
-    return fig, ax
-
-def plot_mu_sweep(mus, z0: float=0.1, T: float=80.0, t_eval=None, fname: Optional[str]='figures/mu_sweep_mean_z.png') -> Tuple[plt.Figure, plt.Axes]:
-    """Realiza un barrido en `mus` usando la función mu_sweep_mean de lógica y traza mu vs media(z).
-    Devuelve (fig, ax) y guarda si `fname` se proporciona.
-    """
-    mus_arr, means = mu_sweep_mean(mus, z0=z0, T=T, t_eval=t_eval)
-    fig, ax = plt.subplots(figsize=(6,4))
-    ax.plot(mus_arr, means, '-o', markersize=4)
-    ax.set_xlabel(r'$\mu$'); ax.set_ylabel('media de $z$ (ventana final)')
-    ax.set_title('Media estacionaria de $z$ vs $\\mu$ (barrido paramétrico)')
-    ax.grid(True)
-    plt.tight_layout()
-    if fname:
-        plt.savefig(fname, dpi=300)
-    return fig, ax
-
-if __name__ == '__main__':
-    # ejemplos rápidos
-    plot_trajectory(mu=1.0)
-    plot_mu_sweep(np.linspace(-1.0, 2.0, 25))
+    with columna2:
+        st.subheader("🧑🏻‍🏫 Explicación del Diagrama de Bifurcación")
+        st.markdown(" En este caso los puntos de equilibrio o puntos fijos son z* = 0 y z* = μ, por lo que este ultimo depende del parametro")
 
