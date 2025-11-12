@@ -37,6 +37,7 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
         st.header("⚙️Parametros")
         with st.expander("📚 Ecuaciones Diferenciales Ordinarias"):
             st.subheader("Condiciones iniciales")
+            st.subheader("Parametros del problema")
             x0 = st.number_input("Valor inicial de x" , value = -0.50)
             y0 = st.number_input("Valor inicial de y", value= 0.00)
             a = st.number_input("Ancho del rio (a)", value= 0.5)
@@ -59,9 +60,21 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
             #Si desea la explicacion de la grafica 
             explicacion = st.checkbox("Explicacion de la grafica y del ejercicio")
 
+            st.subheader("Diagrama de Bifurcación📈")
+            miu_min = st.number_input("Valor mínimo de μ", value=-2.0)
+            miu_max = st.number_input("Valor máximo de μ", value=2.0)
+            valores_rep = st.slider(
+                                    "Número de puntos a calcular",
+                                    min_value=10,
+                                    max_value=500,
+                                    value=10,  # valor por defecto
+                                    step=10,    # incremento
+                                    help="Cantidad de valores de μ a evaluar"
+                                    )
+
 
     #Llamada a la solucion de la edo
-    Metodos(x0, y0 ,a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok, explicacion)
+    Metodos(x0, y0 ,a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok, explicacion, miu_min, miu_max, valores_rep)
 
 
 with tab3:  #Esta pestaña es para la parte de Numerica solo
