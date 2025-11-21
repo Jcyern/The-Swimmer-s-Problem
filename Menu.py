@@ -60,8 +60,15 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
                 cond_inicial.append( (x1, y1) )
                 cond_inicial.append( (x2, y2) )
                 cond_inicial.append( (x3, y3)  )
-
-
+            st.subheader("Espaciado entre los puntos evaluados")
+            x_vals = st.slider(
+                                "Espaciado",
+                                min_value=0.10,
+                                max_value=10.00,
+                                value=0.40,  # valor por defecto
+                                step=0.05,    # incremento
+                                help="Espaciado entre los puntos"
+                                )
             st.subheader("Rango de solución")
             x_min = st.number_input("x mínimo", value=-5.0)
             x_max = st.number_input("x máximo", value=5.0)
@@ -84,15 +91,15 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
             valores_rep = st.slider(
                                     "Número de puntos a calcular",
                                     min_value=10,
-                                    max_value=500,
-                                    value=10,  # valor por defecto
+                                    max_value=505,
+                                    value=5,  # valor por defecto
                                     step=10,    # incremento
                                     help="Cantidad de valores de μ a evaluar"
                                     )
 
 
     #Llamada a la solucion de la edo
-    Metodos(x0, y0 ,a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok, explicacion,  curvas_sol_ok, cond_inicial,  miu_min, miu_max, valores_rep)
+    Metodos(x0, y0 ,a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok, explicacion,  curvas_sol_ok, cond_inicial,  miu_min, miu_max, valores_rep, x_vals )
 
 
 with tab3:  #Esta pestaña es para la parte de Numerica solo
