@@ -1,0 +1,457 @@
+%===================================================================================
+% JORNADA CIENTÍFICA ESTUDIANTIL - MATCOM, UH
+%===================================================================================
+% Esta plantilla ha sido diseñada para ser usada en los artículos de la
+% Jornada Científica Estudiantil de MatCom.
+%
+% Por favor, siga las instrucciones de esta plantilla y rellene en las secciones
+% correspondientes.
+%
+% NOTA: Necesitará el archivo 'jcematcom.sty' en la misma carpeta donde esté este
+%       archivo para poder utilizar esta plantila.
+%===================================================================================
+
+
+
+%===================================================================================
+% PREÁMBULO
+%-----------------------------------------------------------------------------------
+\documentclass[a4paper,10pt,twocolumn]{article}
+
+%===================================================================================
+% Paquetes
+%-----------------------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{jcematcom}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage[pdftex]{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{float}
+
+%-----------------------------------------------------------------------------------
+% Configuración
+%-----------------------------------------------------------------------------------
+\hypersetup{colorlinks,%
+	    citecolor=black,%
+	    filecolor=black,%
+	    linkcolor=black,%
+	    urlcolor=blue}
+
+%===================================================================================
+
+
+
+%===================================================================================
+% Presentacion
+%-----------------------------------------------------------------------------------
+% Título
+%-----------------------------------------------------------------------------------
+\title{Informe del Proyecto de Ecuaciones Diferenciaes Ordinarias y Matematica Numerica}
+
+%-----------------------------------------------------------------------------------
+% Autores
+%-----------------------------------------------------------------------------------
+\author{\\
+\name Kamila Reinoso Asin \email \href{mailto:kamila.reinoso@estudiantes.matcom.uh.cu}{kamila.reinoso@estudiantes.matcom.uh.cu}
+	\\ \addr Grupo CC-211 \AND
+\name Juan Carlos Yern Espinosa \email \href{mailto:juan.cyern@estudiantes.matcom.uh.cu}{juan.cyern@estudiantes.matcom.uh.cu}
+  \\ \addr Grupo CC-211 \AND
+\name Ana Laura Hernandez Cutiño \email \href{mailto:hernandezanalaura376@gmail.com}{hernandezanalaura376@gmail.com}
+  \\ \addr Grupo CC-211}
+%-----------------------------------------------------------------------------------
+% Tutores
+%-----------------------------------------------------------------------------------
+\tutors{\\
+Dr. Tutor Uno, \emph{Centro} \\
+Lic. Tutor Dos, \emph{Centro}}
+
+%-----------------------------------------------------------------------------------
+% Headings
+%-----------------------------------------------------------------------------------
+\jcematcomheading{\the\year}{1-\pageref{end}}{A. Uno, A. Dos}
+
+%-----------------------------------------------------------------------------------
+\ShortHeadings{Ejemplo JCE}{Autores}
+%===================================================================================
+
+
+
+%===================================================================================
+% DOCUMENTO
+%-----------------------------------------------------------------------------------
+\begin{document}
+
+%-----------------------------------------------------------------------------------
+% NO BORRAR ESTA LINEA!
+%-----------------------------------------------------------------------------------
+\twocolumn[
+%-----------------------------------------------------------------------------------
+
+\maketitle
+
+%===================================================================================
+% Resumen y Abstract
+%-----------------------------------------------------------------------------------
+\selectlanguage{spanish} % Para producir el documento en Español
+
+%-----------------------------------------------------------------------------------
+% Resumen en Español
+%-----------------------------------------------------------------------------------
+\begin{abstract}
+
+	El resumen en español debe constar de $100$ a $200$ palabras y presentar de forma
+	clara y concisa el contenido fundamental del artículo.
+
+\end{abstract}
+
+%-----------------------------------------------------------------------------------
+% English Abstract
+%-----------------------------------------------------------------------------------
+\vspace{0.5cm}
+
+\begin{enabstract}
+
+  The English abstract must have have $100$ to $200$ words, and present 
+  the essentials of the article content in a clear and concise form.
+
+\end{enabstract}
+
+%-----------------------------------------------------------------------------------
+% Palabras clave
+%-----------------------------------------------------------------------------------
+\begin{keywords}
+	Separadas,
+	Por,
+	Comas.
+\end{keywords}
+
+%-----------------------------------------------------------------------------------
+% Temas
+%-----------------------------------------------------------------------------------
+\begin{topics}
+	Tema, Subtema.
+\end{topics}
+
+
+%-----------------------------------------------------------------------------------
+% NO BORRAR ESTAS LINEAS!
+%-----------------------------------------------------------------------------------
+\vspace{0.8cm}
+]
+%-----------------------------------------------------------------------------------
+
+
+%===================================================================================
+
+%===================================================================================
+% Resumen Extendido
+%-----------------------------------------------------------------------------------
+\section{Breve Explicacion del Problema del Nadador}\label{sec:intro}
+%-----------------------------------------------------------------------------------
+  Tenemos un rio que fluye hacia el norte. Sus orillas son las rectas $x =\pm a$, con un acho
+  de w = 2a y el eje y su centro.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{Graficas/Ejemp_1.jpg}
+    \caption{Problema del nadador}
+    \label{fig:ejemplo}
+  \end{figure}
+	Supóngase que la 
+  velocidad $v_R$ a la cual el agua fluye se incrementa conforme se acerca al centro del 
+  río, y en realidad está dada en términos de la distancia x desde el centro por
+  \[
+  v_R = v_0 \left( 1 - \frac{x^2}{a^2} \right)
+  \]
+  	Se puede utilizar la ecuación para verificar que el agua fluye más rápido en el 
+   centro, donde $v_R$ = $v_0$, y que $v_R$= 0 en cada orilla del río.
+   Supóngase que un nadador inicia en el punto (-a, 0) de la orilla oeste y nada 
+   hacia el este (en relación con el agua) con una velocidad constante $v_S$. Su vector de velocidad (relativo al cauce del río) tiene una 
+   componente horizontal $v_S$ y una componente vertical $v_R$. En consecuencia, el ángulo 
+   de dirección a del nadador está dado por
+   \[
+   \tan \alpha = \frac{v_R}{v_S}
+   \]
+   Como sabemos la $\tan \alpha = dy / dx$ entonces podemos sustituirla por la primera ecuacion en esta quedandonos la ecuacion diferecial de primer orden
+   \[
+\frac{dy}{dx} = \frac{v_R}{v_S} = \frac{v_0}{v_S} \left(1 - \frac{x^2}{a^2}\right)
+\]
+  Observemos que esta ecuacion se puede resolver facilmente usando por el metodo de vaiables separables
+  
+  Resolviendo la ecuacion diferecial:
+
+  \subsection{Paso 1: Separación de variables}
+
+Separamos las variables $y$ y $x$:
+\[
+dy = \frac{v_0}{v_S} \left(1 - \frac{x^2}{a^2}\right) dx
+\]
+
+\subsection{Paso 2: Integración}
+
+Integramos ambos lados:
+\[
+\int dy = \frac{v_0}{v_S} \int \left(1 - \frac{x^2}{a^2}\right) dx
+\]
+
+\subsection{Paso 3: Resolver las integrales}
+
+La integral del lado izquierdo es directa:
+\[
+\int dy = y + C_1
+\]
+
+La integral del lado derecho:
+\[
+\int \left(1 - \frac{x^2}{a^2}\right) dx = \int 1 \, dx - \frac{1}{a^2} \int x^2 \, dx = x - \frac{1}{a^2} \cdot \frac{x^3}{3} + C_2
+\]
+
+\subsection{Paso 4: Unir los resultados}
+
+Combinando ambos resultados:
+\[
+y = \frac{v_0}{v_S} \left(x - \frac{x^3}{3a^2}\right) + C
+\]
+donde $C = C_1 - \frac{v_0}{v_S}C_2$ es la constante de integración.
+
+\subsection{Paso 5: Aplicar condición inicial}
+
+El nadador parte del punto $(-a, 0)$, es decir, cuando $x = -a$, $y = 0$:
+\[
+0 = \frac{v_0}{v_S} \left(-a - \frac{(-a)^3}{3a^2}\right) + C
+\]
+\[
+0 = \frac{v_0}{v_S} \left(-a + \frac{a^3}{3a^2}\right) + C
+\]
+\[
+0 = \frac{v_0}{v_S} \left(-a + \frac{a}{3}\right) + C
+\]
+\[
+0 = \frac{v_0}{v_S} \left(-\frac{2a}{3}\right) + C
+\]
+\[
+C = \frac{2a}{3} \cdot \frac{v_0}{v_S}
+\]
+
+\subsection{Paso 6: Solución final}
+
+Sustituyendo el valor de $C$:
+\[
+y = \frac{v_0}{v_S} \left(x - \frac{x^3}{3a^2}\right) + \frac{2a}{3} \cdot \frac{v_0}{v_S}
+\]
+\[
+y = \frac{v_0}{v_S} \left(x - \frac{x^3}{3a^2} + \frac{2a}{3}\right)
+\]
+\subsection{Ejemplo}
+Supóngase que el río tiene 1 mi de ancho y la velocidad en su parte central $v_0$ =  9 mi/h. 
+Si la velocidad del nadador es $v_S$ = 3 mi/h, entonces la ecuación toma la forma $\frac{dy}{dx} = 3(1 - 4x^2)$
+La integración resulta en:
+\[
+y(x) = \int (3 - 12x^2) \, dx = 3x - 4x^3 + C
+\]
+Para la condición inicial $y\left(-\frac{1}{2}\right) = 0$ hace que $C = 1$, y así:
+\[
+y(x) = 3x - 4x^3 + 1
+\]
+
+Entonces:
+\[
+y\left(\frac{1}{2}\right) = 3\left(\frac{1}{2}\right) - 4\left(\frac{1}{2}\right)^3 + 1 = \frac{3}{2} - \frac{1}{2} + 1 = 2
+\]
+
+Así que el nadador es llevado por la corriente 2 millas río abajo, mientras que nada 1 milla a lo ancho del río.
+
+\section{Problema del Nadador en el proyecto}\label{sec:intro}
+ En nuestro caso el problema del nadador es muy similar a lo explicado antes. En este proyecto la ecuacion diferencial obtiene la siguiente
+ forma:
+ \[
+ \frac{dy}{dx} = \frac{v_0}{v_S} \left(1 - \frac{x^4}{a^4}\right)
+ \]
+ La manera en que la podemos resolver es similar a como resolvimos la ecuacion diferencial en la seccion anterior. Por lo que la solucion general a esta ecuacion seria
+\[
+y(x) = \frac{v_0}{v_S} \left(x - \frac{x^5}{5a^4}\right) + C
+\]
+donde $C$ es la constante de integración.
+
+\subsection{Ejemplo}
+ Utilizandose los mismos valores del ejemplo (1.7) tenemos que la ecuacion diferencial toma la forma $\frac{dy}{dx} = 3(1 - 16x^4)$
+ Encontremos entonces el valor de la contante de integracion $C$ usando la condicion inicial $y(-1/2) = 0$.
+ \subsection{Cálculo de la Constante \( C \)}
+
+Sustituimos los valores en la condición inicial \( y\left(-\frac{1}{2}\right) = 0 \):
+\[
+0 = \frac{9}{3} \left(-\frac{1}{2} - \frac{\left(-\frac{1}{2}\right)^5}{5\left(\frac{1}{2}\right)^4}\right) + C
+\]
+
+\[
+\frac{v_0}{v_S} = \frac{9}{3} = 3
+\]
+\[
+0 = 3 \left(-\frac{1}{2} - \frac{\left(-\frac{1}{2}\right)^5}{5\left(\frac{1}{2}\right)^4}\right) + C
+\]
+\[
+0 = 3 \left(-\frac{1}{2} - \frac{-\frac{1}{32}}{5 \cdot \frac{1}{16}}\right) + C
+\]
+\[
+0 = 3 \left(-\frac{1}{2} + \frac{\frac{1}{32}}{\frac{5}{16}}\right) + C
+\]
+\[
+0 = 3 \left(-\frac{1}{2} + \frac{1}{10}\right) + C
+\]
+\[
+-\frac{1}{2} + \frac{1}{10} = -\frac{5}{10} + \frac{1}{10} = -\frac{4}{10} = -\frac{2}{5}
+\]
+\[
+0 = 3 \left(-\frac{2}{5}\right) + C
+\]
+\[
+0 = -\frac{6}{5} + C
+\]
+Como ultimo paso despejamos a C y obtendremos la curva solucion que pasa por el punto (-1/2,0)
+\[
+C = \frac{6}{5}
+\]
+
+\subsection{Paso 6: Solución Particular}
+La solución particular con los valores dados es:
+\[
+y(x) = 3 \left(x - \frac{x^5}{5 \cdot \left(\frac{1}{2}\right)^4}\right) + \frac{6}{5}
+\]
+Simplificando:
+\[
+y(x) = 3 \left(x - \frac{x^5}{5 \cdot \frac{1}{16}}\right) + \frac{6}{5}
+\]
+\[
+y(x) = 3 \left(x - 16 \cdot \frac{x^5}{5}\right) + \frac{6}{5}
+\]
+\[
+y(x) = 3x - \frac{48}{5}x^5 + \frac{6}{5}
+\]
+
+\subsection{Paso 7: Evaluar en \( x = \frac{1}{2} \)}
+\[
+y\left(\frac{1}{2}\right) = 3 \cdot \frac{1}{2} - \frac{48}{5} \cdot \left(\frac{1}{2}\right)^5 + \frac{6}{5}
+\]
+
+\subsection{Paso 8: Calcular Potencias y Operaciones}
+\[
+\left(\frac{1}{2}\right)^5 = \frac{1}{32}
+\]
+\[
+y\left(\frac{1}{2}\right) = \frac{3}{2} - \frac{48}{5} \cdot \frac{1}{32} + \frac{6}{5}
+\]
+\[
+y\left(\frac{1}{2}\right) = \frac{3}{2} - \frac{48}{160} + \frac{6}{5}
+\]
+\[
+y\left(\frac{1}{2}\right) = \frac{3}{2} - \frac{3}{10} + \frac{6}{5}
+\]
+
+\subsection{Paso 9: Expresar en Décimos y Operar}
+\[
+\frac{3}{2} = \frac{15}{10}, \quad \frac{3}{10} = \frac{3}{10}, \quad \frac{6}{5} = \frac{12}{10}
+\]
+\[
+y\left(\frac{1}{2}\right) = \frac{15}{10} - \frac{3}{10} + \frac{12}{10} = \frac{24}{10} = \frac{12}{5}
+\]
+
+\subsection{Resultado Final}
+\[
+y\left(\frac{1}{2}\right) = \frac{12}{5} = 2.4
+\]
+
+\subsection{Interpretación}
+Con los valores dados:
+\begin{itemize}
+    \item El nadador es llevado por la corriente \( 2.4 \) millas río abajo
+    \item Nada 1 milla a lo ancho del río (desde \( x = -\frac{1}{2} \) hasta \( x = \frac{1}{2} \))
+    \item La relación \( \frac{v_0}{v_S} = 3 \) indica que la corriente máxima es el triple de la velocidad del nadador
+\end{itemize}
+
+\section{Isoclinas}
+ El metodo de las isoclinas es muy usado para poder graficar el comportamiento de las soluciones de una ecuacion diferencial sin necesidad de resolverla. Consiste en encontrar curvas en el plano xy donde la pendiente de la solucion es constante.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Graficas/Isoclinas.png}
+    \caption{Metodo Grafico Isoclinas}
+    \label{fig:Grafico}
+  \end{figure}
+
+  Analisis Cualitatico 
+  En el centro del rio la pendiente es maxima y conforme nos acercamos a las orillas la pendiente disminuye hasta llegar a ser cero en las orillas. Esto indica que la velocidad del agua es maxima en el centro y minima en las orillas.
+  el patron es simetrico, por lo cual la funcion se comporta de manera similar a ambos lados del centro del rio.
+  
+
+%-----------------------------------------------------------------------------------
+Para producir listas enumeradas, utilice el siguiente estilo:
+\begin{enumerate}
+	\item Primer Elemento
+	\item Segundo Elemento
+	%
+	\begin {enumerate}
+	\item {Segundo Elemento - Subítem Uno}
+	\item {Segundo Elemento - Subítem Dos}
+	\end {enumerate}
+	%
+\end{enumerate}
+
+%-----------------------------------------------------------------------------------
+Para producir descripciones, use el siguiente estilo:
+
+%-----------------------------------------------------------------------------------
+\begin{description}
+	\item [Primer Elemento] con su respectiva descripción.
+	\item [Segundo Elemento] también con su respectiva descripción.
+\end{description}
+
+%-----------------------------------------------------------------------------------
+Para producir cuerpos flotantes (figuras o tablas), asegúrese de numerar
+y etiquetar correctamente cada figura. Las referencias a las figuras deben
+estar correctamente etiquetadas. Por ejemplo, véase la Fig. \ref{fig:ex}\ldots
+
+\begin{figure}[h!]%
+	\begin{center}
+		\begin{tabular}{|c|c|c|} \hline
+			& Método 1 	& Método 2 	\\ \hline
+			A 			&  			&  			\\ \hline
+			B			& 			& 			\\ \hline
+			C 			& 			&  			\\ \hline
+		\end{tabular}
+		\caption{Figura de ejemplo. Recuerde especificar el origen de los datos que se muestran. \label{fig:ex}}
+	\end{center}
+\end{figure}
+%-----------------------------------------------------------------------------------
+
+Para producir código fuente, envuélvalo en una figura flotante y
+etiquételo correctamente. Por ejemplo, en la Fig. \ref{fig:code}
+se muestra un código bastante conocido\ldots
+
+% Configuración de Listings
+\lstset{keywordstyle=\color{blue}, basicstyle=\small}
+
+\begin{figure}[h!]%
+	\begin{lstlisting}[language=c]%
+		
+     int main(int argc, char** argv)
+     {
+         // Imprimiendo "Hola Mundo".
+         printf("Hello, World");
+     }
+		
+	\end{lstlisting}
+	\caption{Código fuente de ejemplo.\label{fig:code}}
+\end{figure}
+
+%===================================================================================
+
+
+\label{end}
+
+\end{document}
+
+%===================================================================================
