@@ -10,7 +10,6 @@ def Isoclinas_VS(Funcion, rango_x, rango_y,a, v0,xlim,ylim, x_min, y_min,vs, x_v
     "Calcula las curvas solucion aproximadas al valor incial que se le pase"
     #LLamado a la Parte Logica
     X,Y,U,V = Isoclinas(Funcion, rango_x, rango_y,a,v0,vs)
-
     fig, ax =  plt.subplots(figsize=(8, 6))
     plt.quiver(X, Y, U, V, angles="xy",width=0.0015)
     if curvas_sol_ok and len(cond_inicial) > 0:
@@ -29,8 +28,8 @@ def Isoclinas_VS(Funcion, rango_x, rango_y,a, v0,xlim,ylim, x_min, y_min,vs, x_v
     plt.xlim(x_min,xlim) 
     plt.ylim(y_min,ylim) 
     plt.title('Campo de Pendientes')
-    plt.legend()
     st.latex("📈 Ecuación Diferencial:  dy/dx = v0*(1 - (x^4)/a^4)/vs")
+    plt.legend()
     st.pyplot(fig)
     #Esta es la informacion del metodo de las isoclinas
     st.subheader("👩🏼‍💼Explicacion del Metodo de las Isoclinas")

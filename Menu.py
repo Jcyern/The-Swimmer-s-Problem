@@ -50,13 +50,13 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
             if curvas_sol_ok:
                 columnas1, columnas2 = st.columns(2)
                 with columnas1:
-                    x1 = st.number_input("Valor inicial de x1" , value = 0, key="x1")
-                    x2 = st.number_input("Valor inicial de x2" , value = -1, key="x2")
-                    x3 = st.number_input("Valor inicial de x3" , value = 1, key="x3")
+                    x1 = st.number_input("Valor inicial de x1" , value = 0.00, key="x1")
+                    x2 = st.number_input("Valor inicial de x2" , value = -1.00, key="x2")
+                    x3 = st.number_input("Valor inicial de x3" , value = 1.00, key="x3")
                 with columnas2:
-                    y1 = st.number_input("Valor inicial de y1", value= 0, key="y1")
-                    y2 = st.number_input("Valor inicial de y2", value= -1, key="y2")
-                    y3 = st.number_input("Valor inicial de y3", value= 1, key="y3")
+                    y1 = st.number_input("Valor inicial de y1", value= 0.00, key="y1")
+                    y2 = st.number_input("Valor inicial de y2", value= -1.00, key="y2")
+                    y3 = st.number_input("Valor inicial de y3", value= 1.00, key="y3")
                 cond_inicial.append( (x1, y1) )
                 cond_inicial.append( (x2, y2) )
                 cond_inicial.append( (x3, y3)  )
