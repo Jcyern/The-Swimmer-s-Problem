@@ -6,15 +6,21 @@ from Controles_y_Logica.Logica.Edo.Edo_Log import Valor_en_Y
 from Controles_y_Logica.Logica.Edo.Edo_Log import solucion_diferencial as sd
 from Controles_y_Logica.Logica.Edo.Edo_Log import crear_grafico as cg
 
-def Isoclinas_VS(Funcion, rango_x, rango_y,a, v0,xlim,ylim, x_min, y_min,vs):
+def Isoclinas_VS(Funcion, rango_x, rango_y,a, v0,xlim,ylim, x_min, y_min,vs, x_vals, curvas_sol_ok, cond_inicial):
     "Calcula las curvas solucion aproximadas al valor incial que se le pase"
     #LLamado a la Parte Logica
     X,Y,U,V = Isoclinas(Funcion, rango_x, rango_y,a,v0,vs)
+    fig, ax =  plt.subplots(figsize=(8, 6))
+    plt.quiver(X, Y, U, V, angles="xy",width=0.0015)
+    if curvas_sol_ok and len(cond_inicial) > 0:
+        for C in cond_inicial:
+            Ci= sd(C[0], C[1], a, v0, vs)
+            y_vals = cg(x_vals, a, v0, vs, Ci)
+            ax.plot(x_vals, y_vals, label=f'Curva Solucion C={Ci:.2f}')
 
     #Introduccion
     st.header("Observemos primero el metodo de las Isoclinas para poder sacar una aproximacion a la curva solucion de la siguiente ecuacion diferencial")
     #Partes de la grafica 
-    fig, ax =  plt.subplots(figsize=(8, 6))
     ax.set_xlabel('Eje x', fontsize=12)
     ax.set_ylabel('Eje y', fontsize=12)
     ax.set_title('Campo de Isoclinas', fontsize=14)
@@ -22,8 +28,8 @@ def Isoclinas_VS(Funcion, rango_x, rango_y,a, v0,xlim,ylim, x_min, y_min,vs):
     plt.xlim(x_min,xlim) 
     plt.ylim(y_min,ylim) 
     plt.title('Campo de Pendientes')
-    plt.quiver(X, Y, U, V, angles="xy",width=0.0015)
     st.latex("📈 Ecuación Diferencial:  dy/dx = v0*(1 - (x^4)/a^4)/vs")
+    plt.legend()
     st.pyplot(fig)
     #Esta es la informacion del metodo de las isoclinas
     st.subheader("👩🏼‍💼Explicacion del Metodo de las Isoclinas")
@@ -59,7 +65,6 @@ def Solve_VS(x0,y0, a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok):
         st.pyplot(solucion)
     st.header("ℹ️ Información")
     st.info("En el panel de 📚Ecuaciones Diferenciales Ordinarias se pueden cambiar los valores de la curva para observar el como se comporta en diferentes valores iniciales, asi como modificar los limites de los ejes y los parametros como la velocidad del nadador, la velocidad del rio o ancho de este.")
-
 
 def Valor_en_Y_VS(x,v0, vs, a, C):
     "Calcula el valor en x de la solucion"

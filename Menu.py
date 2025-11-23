@@ -44,6 +44,31 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
             v0 = st.number_input("Velocidad del rio en la parte central (v0)", value= 9.00)
             vs  = st.number_input("Velocidad del nadador (vs)", value= 3.00)
 
+            st.header("Curvas Soluciones de las Isoclinas")
+            curvas_sol_ok = st.checkbox("Desea ver como actuan las curvas solucion para diferentes valores iniciales")
+            cond_inicial = []
+            if curvas_sol_ok:
+                columnas1, columnas2 = st.columns(2)
+                with columnas1:
+                    x1 = st.number_input("Valor inicial de x1" , value = 0.00, key="x1")
+                    x2 = st.number_input("Valor inicial de x2" , value = -1.00, key="x2")
+                    x3 = st.number_input("Valor inicial de x3" , value = 1.00, key="x3")
+                with columnas2:
+                    y1 = st.number_input("Valor inicial de y1", value= 0.00, key="y1")
+                    y2 = st.number_input("Valor inicial de y2", value= -1.00, key="y2")
+                    y3 = st.number_input("Valor inicial de y3", value= 1.00, key="y3")
+                cond_inicial.append( (x1, y1) )
+                cond_inicial.append( (x2, y2) )
+                cond_inicial.append( (x3, y3)  )
+            st.subheader("Espaciado entre los puntos evaluados")
+            x_vals = st.slider(
+                                "Espaciado",
+                                min_value=0.10,
+                                max_value=10.00,
+                                value=0.40,  # valor por defecto
+                                step=0.05,    # incremento
+                                help="Espaciado entre los puntos"
+                                )
             st.subheader("Rango de solución")
             x_min = st.number_input("x mínimo", value=-5.0)
             x_max = st.number_input("x máximo", value=5.0)
@@ -61,20 +86,20 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
             explicacion = st.checkbox("Explicacion de la grafica y del ejercicio")
 
             st.subheader("Diagrama de Bifurcación📈")
-            miu_min = st.number_input("Valor mínimo de μ", value=-2.0)
-            miu_max = st.number_input("Valor máximo de μ", value=2.0)
+            miu_min = st.number_input("Valor mínimo de μ", value=-5.0)
+            miu_max = st.number_input("Valor máximo de μ", value=5.0)
             valores_rep = st.slider(
                                     "Número de puntos a calcular",
                                     min_value=10,
                                     max_value=500,
-                                    value=10,  # valor por defecto
+                                    value=100,  # valor por defecto
                                     step=10,    # incremento
                                     help="Cantidad de valores de μ a evaluar"
                                     )
 
 
     #Llamada a la solucion de la edo
-    Metodos(x0, y0 ,a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok, explicacion, miu_min, miu_max, valores_rep)
+    Metodos(x0, y0 ,a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok, explicacion,  curvas_sol_ok, cond_inicial,  miu_min, miu_max, valores_rep, x_vals )
 
 
 with tab3:  #Esta pestaña es para la parte de Numerica solo

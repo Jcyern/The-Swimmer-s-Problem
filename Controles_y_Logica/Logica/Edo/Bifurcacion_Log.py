@@ -26,4 +26,4 @@ def estabilidad_punto_fijo(miu):
             else:
                 miu_inestables.append(miu_val)
                 x_inestables.append(i)  
-    return miu_estables, x_estables, miu_inestables, x_inestables
+    return miu_estables, x_estables, miu_inestables, x_inestables, 0,0
