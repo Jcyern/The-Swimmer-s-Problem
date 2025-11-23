@@ -32,6 +32,8 @@
 \usepackage{subcaption}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{tabularx}
+\usepackage{booktabs}
 
 %-----------------------------------------------------------------------------------
 % Configuración
@@ -104,8 +106,7 @@ Lic. Tutor Dos, \emph{Centro}}
 %-----------------------------------------------------------------------------------
 \begin{abstract}
 
-	El resumen en español debe constar de $100$ a $200$ palabras y presentar de forma
-	clara y concisa el contenido fundamental del artículo.
+	  Este proyecto integra ecuaciones diferenciales ordinarias y métodos numéricos para modelar sistemas dinámicos. Comienza con el problema del nadador en un río, donde se deriva la ecuación diferencial y se visualiza mediante isoclinas. Luego se aplican métodos numéricos (Euler, Euler mejorado y Runge-Kutta) analizando su estabilidad y convergencia. Se verifica que el problema esté bien planteado y se estudia la estabilidad de los esquemas numéricos. Adicionalmente, se construye un diagrama de bifurcación identificando el tipo de bifurcación y su interpretación cualitativa. Finalmente, se analiza el plano de fase de un sistema de ecuaciones, clasificando puntos críticos y describiendo el comportamiento global. El proyecto demuestra la sinergia entre el análisis cualitativo y cuantitativo en el estudio de sistemas dinámicos.
 
 \end{abstract}
 
@@ -116,8 +117,7 @@ Lic. Tutor Dos, \emph{Centro}}
 
 \begin{enabstract}
 
-  The English abstract must have have $100$ to $200$ words, and present 
-  the essentials of the article content in a clear and concise form.
+  This comprehensive project bridges ordinary differential equations (ODEs) with numerical analysis to study dynamical systems. It begins with the swimmer problem in a river, deriving the governing ODE and visualizing solutions through isoclines. Numerical methods—Euler, improved Euler, and Runge-Kutta—are implemented and compared, analyzing their stability, convergence, and accuracy. The project verifies the problem's well-posedness and examines numerical scheme stability. A bifurcation analysis identifies bifurcation types and their qualitative implications. Finally, phase plane analysis of ODE systems classifies critical points and characterizes global dynamics. The work demonstrates the synergy between analytical and computational approaches in understanding complex mathematical models, highlighting how numerical methods complement qualitative analysis in studying dynamical behavior across different mathematical contexts. This integrated approach provides valuable insights into both theoretical and practical aspects of differential equations and numerical computation.
 
 \end{enabstract}
 
@@ -151,55 +151,51 @@ Lic. Tutor Dos, \emph{Centro}}
 %===================================================================================
 % Resumen Extendido
 %-----------------------------------------------------------------------------------
-\section{Breve Explicacion del Problema del Nadador}\label{sec:intro}
-%-----------------------------------------------------------------------------------
-  Tenemos un rio que fluye hacia el norte. Sus orillas son las rectas $x =\pm a$, con un acho
-  de w = 2a y el eje y su centro.
-  \begin{figure}[H]
+\section{Breve Explicación del Problema del Nadador}\label{sec:intro}
+
+Tenemos un río que fluye hacia el norte. Sus orillas son las rectas $x = \pm a$, con un ancho de $w = 2a$ y el eje $y$ su centro.
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.3\textwidth]{Graficas/Ejemp_1.jpg}
     \caption{Problema del nadador}
     \label{fig:ejemplo}
-  \end{figure}
-	Supóngase que la 
-  velocidad $v_R$ a la cual el agua fluye se incrementa conforme se acerca al centro del 
-  río, y en realidad está dada en términos de la distancia x desde el centro por
-  \[
-  v_R = v_0 \left( 1 - \frac{x^2}{a^2} \right)
-  \]
-  	Se puede utilizar la ecuación para verificar que el agua fluye más rápido en el 
-   centro, donde $v_R$ = $v_0$, y que $v_R$= 0 en cada orilla del río.
-   Supóngase que un nadador inicia en el punto (-a, 0) de la orilla oeste y nada 
-   hacia el este (en relación con el agua) con una velocidad constante $v_S$. Su vector de velocidad (relativo al cauce del río) tiene una 
-   componente horizontal $v_S$ y una componente vertical $v_R$. En consecuencia, el ángulo 
-   de dirección a del nadador está dado por
-   \[
-   \tan \alpha = \frac{v_R}{v_S}
-   \]
-   Como sabemos la $\tan \alpha = dy / dx$ entonces podemos sustituirla por la primera ecuacion en esta quedandonos la ecuacion diferecial de primer orden
-   \[
+\end{figure}
+
+Supóngase que la velocidad $v_R$ a la cual el agua fluye se incrementa conforme se acerca al centro del río, y en realidad está dada en términos de la distancia $x$ desde el centro por:
+\[
+v_R = v_0 \left( 1 - \frac{x^2}{a^2} \right)
+\]
+
+Se puede utilizar la ecuación para verificar que el agua fluye más rápido en el centro, donde $v_R = v_0$, y que $v_R = 0$ en cada orilla del río.
+
+Supóngase que un nadador inicia en el punto $(-a, 0)$ de la orilla oeste y nada hacia el este (en relación con el agua) con una velocidad constante $v_S$. Su vector de velocidad (relativo al cauce del río) tiene una componente horizontal $v_S$ y una componente vertical $v_R$. En consecuencia, el ángulo de dirección $\alpha$ del nadador está dado por:
+\[
+\tan \alpha = \frac{v_R}{v_S}
+\]
+
+Como sabemos que $\tan \alpha = dy/dx$ entonces podemos sustituirla por la primera ecuación en esta, quedándonos la ecuación diferencial de primer orden:
+\[
 \frac{dy}{dx} = \frac{v_R}{v_S} = \frac{v_0}{v_S} \left(1 - \frac{x^2}{a^2}\right)
 \]
-  Observemos que esta ecuacion se puede resolver facilmente usando por el metodo de vaiables separables
-  
-  Resolviendo la ecuacion diferecial:
 
-  \subsection{Paso 1: Separación de variables}
+Observemos que esta ecuación se puede resolver fácilmente usando el método de variables separables.
 
+\subsection{Solución de la Ecuación Diferencial}
+
+\subsubsection{Paso 1: Separación de variables}
 Separamos las variables $y$ y $x$:
 \[
 dy = \frac{v_0}{v_S} \left(1 - \frac{x^2}{a^2}\right) dx
 \]
 
-\subsection{Paso 2: Integración}
-
+\subsubsection{Paso 2: Integración}
 Integramos ambos lados:
 \[
 \int dy = \frac{v_0}{v_S} \int \left(1 - \frac{x^2}{a^2}\right) dx
 \]
 
-\subsection{Paso 3: Resolver las integrales}
-
+\subsubsection{Paso 3: Resolver las integrales}
 La integral del lado izquierdo es directa:
 \[
 \int dy = y + C_1
@@ -210,49 +206,39 @@ La integral del lado derecho:
 \int \left(1 - \frac{x^2}{a^2}\right) dx = \int 1 \, dx - \frac{1}{a^2} \int x^2 \, dx = x - \frac{1}{a^2} \cdot \frac{x^3}{3} + C_2
 \]
 
-\subsection{Paso 4: Unir los resultados}
-
+\subsubsection{Paso 4: Unir los resultados}
 Combinando ambos resultados:
 \[
 y = \frac{v_0}{v_S} \left(x - \frac{x^3}{3a^2}\right) + C
 \]
 donde $C = C_1 - \frac{v_0}{v_S}C_2$ es la constante de integración.
 
-\subsection{Paso 5: Aplicar condición inicial}
-
+\subsubsection{Paso 5: Aplicar condición inicial}
 El nadador parte del punto $(-a, 0)$, es decir, cuando $x = -a$, $y = 0$:
 \[
 0 = \frac{v_0}{v_S} \left(-a - \frac{(-a)^3}{3a^2}\right) + C
 \]
 \[
-0 = \frac{v_0}{v_S} \left(-a + \frac{a^3}{3a^2}\right) + C
-\]
-\[
 0 = \frac{v_0}{v_S} \left(-a + \frac{a}{3}\right) + C
-\]
-\[
-0 = \frac{v_0}{v_S} \left(-\frac{2a}{3}\right) + C
 \]
 \[
 C = \frac{2a}{3} \cdot \frac{v_0}{v_S}
 \]
 
-\subsection{Paso 6: Solución final}
-
+\subsubsection{Paso 6: Solución final}
 Sustituyendo el valor de $C$:
-\[
-y = \frac{v_0}{v_S} \left(x - \frac{x^3}{3a^2}\right) + \frac{2a}{3} \cdot \frac{v_0}{v_S}
-\]
 \[
 y = \frac{v_0}{v_S} \left(x - \frac{x^3}{3a^2} + \frac{2a}{3}\right)
 \]
+
 \subsection{Ejemplo}
-Supóngase que el río tiene 1 mi de ancho y la velocidad en su parte central $v_0$ =  9 mi/h. 
-Si la velocidad del nadador es $v_S$ = 3 mi/h, entonces la ecuación toma la forma $\frac{dy}{dx} = 3(1 - 4x^2)$
+Supóngase que el río tiene 1 mi de ancho y la velocidad en su parte central $v_0 = 9$ mi/h. Si la velocidad del nadador es $v_S = 3$ mi/h, entonces la ecuación toma la forma $\frac{dy}{dx} = 3(1 - 4x^2)$.
+
 La integración resulta en:
 \[
 y(x) = \int (3 - 12x^2) \, dx = 3x - 4x^3 + C
 \]
+
 Para la condición inicial $y\left(-\frac{1}{2}\right) = 0$ hace que $C = 1$, y así:
 \[
 y(x) = 3x - 4x^3 + 1
@@ -265,45 +251,31 @@ y\left(\frac{1}{2}\right) = 3\left(\frac{1}{2}\right) - 4\left(\frac{1}{2}\right
 
 Así que el nadador es llevado por la corriente 2 millas río abajo, mientras que nada 1 milla a lo ancho del río.
 
-\section{Problema del Nadador en el proyecto}\label{sec:intro}
- En nuestro caso el problema del nadador es muy similar a lo explicado antes. En este proyecto la ecuacion diferencial obtiene la siguiente
- forma:
- \[
- \frac{dy}{dx} = \frac{v_0}{v_S} \left(1 - \frac{x^4}{a^4}\right)
- \]
- La manera en que la podemos resolver es similar a como resolvimos la ecuacion diferencial en la seccion anterior. Por lo que la solucion general a esta ecuacion seria
+\section{Problema del Nadador en el Proyecto}\label{sec:proyecto}
+
+En nuestro caso el problema del nadador es muy similar al explicado antes. En este proyecto la ecuación diferencial obtiene la siguiente forma:
+\[
+\frac{dy}{dx} = \frac{v_0}{v_S} \left(1 - \frac{x^4}{a^4}\right)
+\]
+
+La manera en que la podemos resolver es similar a como resolvimos la ecuación diferencial en la sección anterior. Por lo que la solución general a esta ecuación sería:
 \[
 y(x) = \frac{v_0}{v_S} \left(x - \frac{x^5}{5a^4}\right) + C
 \]
 donde $C$ es la constante de integración.
 
 \subsection{Ejemplo}
- Utilizandose los mismos valores del ejemplo (1.7) tenemos que la ecuacion diferencial toma la forma $\frac{dy}{dx} = 3(1 - 16x^4)$
- Encontremos entonces el valor de la contante de integracion $C$ usando la condicion inicial $y(-1/2) = 0$.
- \subsection{Cálculo de la Constante \( C \)}
+Utilizándose los mismos valores del ejemplo anterior tenemos que la ecuación diferencial toma la forma $\frac{dy}{dx} = 3(1 - 16x^4)$.
 
-Sustituimos los valores en la condición inicial \( y\left(-\frac{1}{2}\right) = 0 \):
+Encontremos entonces el valor de la constante de integración $C$ usando la condición inicial $y(-1/2) = 0$.
+
+\subsubsection{Cálculo de la Constante $C$}
+Sustituimos los valores en la condición inicial $y\left(-\frac{1}{2}\right) = 0$:
 \[
 0 = \frac{9}{3} \left(-\frac{1}{2} - \frac{\left(-\frac{1}{2}\right)^5}{5\left(\frac{1}{2}\right)^4}\right) + C
 \]
-
-\[
-\frac{v_0}{v_S} = \frac{9}{3} = 3
-\]
-\[
-0 = 3 \left(-\frac{1}{2} - \frac{\left(-\frac{1}{2}\right)^5}{5\left(\frac{1}{2}\right)^4}\right) + C
-\]
-\[
-0 = 3 \left(-\frac{1}{2} - \frac{-\frac{1}{32}}{5 \cdot \frac{1}{16}}\right) + C
-\]
 \[
 0 = 3 \left(-\frac{1}{2} + \frac{\frac{1}{32}}{\frac{5}{16}}\right) + C
-\]
-\[
-0 = 3 \left(-\frac{1}{2} + \frac{1}{10}\right) + C
-\]
-\[
--\frac{1}{2} + \frac{1}{10} = -\frac{5}{10} + \frac{1}{10} = -\frac{4}{10} = -\frac{2}{5}
 \]
 \[
 0 = 3 \left(-\frac{2}{5}\right) + C
@@ -311,12 +283,13 @@ Sustituimos los valores en la condición inicial \( y\left(-\frac{1}{2}\right) =
 \[
 0 = -\frac{6}{5} + C
 \]
-Como ultimo paso despejamos a C y obtendremos la curva solucion que pasa por el punto (-1/2,0)
+
+Como último paso despejamos a $C$ y obtendremos la curva solución que pasa por el punto $(-1/2,0)$:
 \[
 C = \frac{6}{5}
 \]
 
-\subsection{Paso 6: Solución Particular}
+\subsubsection{Solución Particular}
 La solución particular con los valores dados es:
 \[
 y(x) = 3 \left(x - \frac{x^5}{5 \cdot \left(\frac{1}{2}\right)^4}\right) + \frac{6}{5}
@@ -332,83 +305,386 @@ y(x) = 3 \left(x - 16 \cdot \frac{x^5}{5}\right) + \frac{6}{5}
 y(x) = 3x - \frac{48}{5}x^5 + \frac{6}{5}
 \]
 
-\subsection{Paso 7: Evaluar en \( x = \frac{1}{2} \)}
+\subsubsection{Evaluación en $x = \frac{1}{2}$}
 \[
 y\left(\frac{1}{2}\right) = 3 \cdot \frac{1}{2} - \frac{48}{5} \cdot \left(\frac{1}{2}\right)^5 + \frac{6}{5}
-\]
-
-\subsection{Paso 8: Calcular Potencias y Operaciones}
-\[
-\left(\frac{1}{2}\right)^5 = \frac{1}{32}
-\]
-\[
-y\left(\frac{1}{2}\right) = \frac{3}{2} - \frac{48}{5} \cdot \frac{1}{32} + \frac{6}{5}
-\]
-\[
-y\left(\frac{1}{2}\right) = \frac{3}{2} - \frac{48}{160} + \frac{6}{5}
-\]
-\[
-y\left(\frac{1}{2}\right) = \frac{3}{2} - \frac{3}{10} + \frac{6}{5}
-\]
-
-\subsection{Paso 9: Expresar en Décimos y Operar}
-\[
-\frac{3}{2} = \frac{15}{10}, \quad \frac{3}{10} = \frac{3}{10}, \quad \frac{6}{5} = \frac{12}{10}
 \]
 \[
 y\left(\frac{1}{2}\right) = \frac{15}{10} - \frac{3}{10} + \frac{12}{10} = \frac{24}{10} = \frac{12}{5}
 \]
 
-\subsection{Resultado Final}
+\subsubsection{Resultado Final}
 \[
 y\left(\frac{1}{2}\right) = \frac{12}{5} = 2.4
 \]
 
-\subsection{Interpretación}
+\subsubsection{Interpretación}
 Con los valores dados:
 \begin{itemize}
-    \item El nadador es llevado por la corriente \( 2.4 \) millas río abajo
-    \item Nada 1 milla a lo ancho del río (desde \( x = -\frac{1}{2} \) hasta \( x = \frac{1}{2} \))
-    \item La relación \( \frac{v_0}{v_S} = 3 \) indica que la corriente máxima es el triple de la velocidad del nadador
+    \item El nadador es llevado por la corriente $2.4$ millas río abajo
+    \item Nada 1 milla a lo ancho del río (desde $x = -\frac{1}{2}$ hasta $x = \frac{1}{2}$)
+    \item La relación $\frac{v_0}{v_S} = 3$ indica que la corriente máxima es el triple de la velocidad del nadador
 \end{itemize}
 
-\section{Isoclinas}
- El metodo de las isoclinas es muy usado para poder graficar el comportamiento de las soluciones de una ecuacion diferencial sin necesidad de resolverla. Consiste en encontrar curvas en el plano xy donde la pendiente de la solucion es constante.
+\section{Método de las Isoclinas}
+
+El método de las isoclinas es muy usado para poder graficar el comportamiento de las soluciones de una ecuación diferencial sin necesidad de resolverla. Consiste en encontrar curvas en el plano $xy$ donde la pendiente de la solución es constante.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{Graficas/Isoclinas.png}
-    \caption{Metodo Grafico Isoclinas}
+    \includegraphics[width=0.4\textwidth]{Graficas/Isoclinas.png}
+    \caption{Método Gráfico de Isoclinas}
     \label{fig:Grafico}
-  \end{figure}
+\end{figure}
 
-  Analisis Cualitatico 
-  En el centro del rio la pendiente es maxima y conforme nos acercamos a las orillas la pendiente disminuye hasta llegar a ser cero en las orillas. Esto indica que la velocidad del agua es maxima en el centro y minima en las orillas.
-  el patron es simetrico, por lo cual la funcion se comporta de manera similar a ambos lados del centro del rio.
-  
+\subsection{Análisis Cualitativo}
+En el centro del río la pendiente es máxima y conforme nos acercamos a las orillas la pendiente disminuye hasta llegar a ser cero en las orillas. Esto indica que la velocidad del agua es máxima en el centro y mínima en las orillas. El patrón es simétrico, por lo cual la función se comporta de manera similar a ambos lados del centro del río.
 
-%-----------------------------------------------------------------------------------
-Para producir listas enumeradas, utilice el siguiente estilo:
+\section{Métodos Numéricos}
+
+Existen formas de obtener el valor de un punto $x$ sin necesidad de resolver la ecuación diferencial, solo necesitamos conocer el valor de la función en un punto $x_0$. Estos son los llamados métodos numéricos, los más comunes actualmente son: Euler, Euler Mejorado y Runge-Kutta de orden 4. Vamos a conocer un poco más acerca de cada uno de estos.
+
+\subsection{Método de Euler}
+El método de Euler es un método numérico sencillo para resolver ecuaciones diferenciales ordinarias. Consiste en aproximar la solución de la ecuación utilizando una serie de pasos pequeños.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Graficas/Grafica_Euler.jpg}
+    \caption{Método de Euler}
+    \label{fig:Grafico_Euler}
+\end{figure}
+
+El método de Euler utiliza la recta tangente a la curva solución en un punto para poder ir aproximándose a la función real. Dado un punto $(x_0, y_0)$ y un incremento $h$ nos movemos en la función usando:
+
+\[
+L(x) = y_0 + f(x_0, y_0)(x - x_0)
+\]
+\[
+x_{n+1} = x_n + h
+\]
+\[
+y_{n+1} = y_n + h f(x_n, y_n)
+\]
+
+Este método depende mucho del incremento que escojamos dado que para un $h$ muy pequeño nuestra aproximación será mucho mejor.
+
+\subsubsection{Análisis Numérico del Método de Euler}
+
+Para la EDO: $\frac{dy}{dt} = f(t, y)$ con condición inicial $y(t_0) = y_0$, el método de Euler explícito es:
+\[
+y_{n+1} = y_n + h f(t_n, y_n)
+\]
+donde $h$ es el tamaño del paso.
+
+\paragraph{Consistencia (¿Está Bien Planteado?)}
+
+\subparagraph{Error Local de Truncamiento}
+El error de truncamiento local $\tau_n$ es:
+\[
+\tau_n = \frac{y(t_{n+1}) - y(t_n)}{h} - f(t_n, y(t_n))
+\]
+
+\subparagraph{Análisis de Consistencia}
+Usando expansión de Taylor alrededor de $t_n$:
+\[
+y(t_{n+1}) = y(t_n) + h y'(t_n) + \frac{h^2}{2} y''(\xi_n)
+\]
+Sustituyendo:
+\[
+\tau_n = \frac{h}{2} y''(\xi_n) = O(h)
+\]
+\textbf{Conclusión}: El método es consistente de orden 1.
+
+\paragraph{Estabilidad}
+
+\subparagraph{Ecuación Test para Análisis}
+Consideramos la ecuación test: $y' = \lambda y$ con $\text{Re}(\lambda) < 0$.
+
+Aplicando Euler:
+\[
+y_{n+1} = y_n + h \lambda y_n = (1 + h\lambda) y_n
+\]
+
+\subparagraph{Factor de Amplificación}
+El factor de amplificación es:
+\[
+G = 1 + h\lambda
+\]
+
+\subparagraph{Condición de Estabilidad}
+Para estabilidad absoluta:
+\[
+|1 + h\lambda| \leq 1
+\]
+
+\subparagraph{Región de Estabilidad}
+La región de estabilidad en el plano complejo es un círculo de radio 1 centrado en $-1$.
+
+\paragraph{Evaluación General}
+
+\begin{itemize}
+\item \textbf{Consistencia}: SÍ está bien planteado (consistente de orden 1)
+\item \textbf{Estabilidad}: Condicionalmente estable
+\item \textbf{Convergencia}: Por el Teorema de Lax, es convergente de orden 1
+\item \textbf{Complejidad Temporal}: $O(n)$ donde $n = (x_f - x_0)/h$
+\end{itemize}
+
+\paragraph{Limitaciones Prácticas}
+\subsection{Método de Euler Mejorado}
+
+El método de Euler Mejorado es mejor que el método de Euler en aproximaciones. Este método, dado un punto inicial $(x_0, y_0)$, utiliza las fórmulas:
+\[
+y_{n+1}^* = y_n + h f(x_n, y_n)
+\]
+\[
+y_{n+1} = y_n + \frac{h}{2} \left[f(x_n, y_n) + f(x_{n+1}, y_{n+1}^*)\right]
+\]
+
+\subsubsection{¿Por qué está Bien Planteado?}
+El método de Euler mejorado está \textbf{bien planteado} porque satisface:
+
 \begin{enumerate}
-	\item Primer Elemento
-	\item Segundo Elemento
-	%
-	\begin {enumerate}
-	\item {Segundo Elemento - Subítem Uno}
-	\item {Segundo Elemento - Subítem Dos}
-	\end {enumerate}
-	%
+\item \textbf{Consistencia}: 
+\[
+\tau(h) = O(h^2) \to 0 \quad \text{cuando} \quad h \to 0
+\]
+
+\item \textbf{Estabilidad Cero}: 
+El método es estable para una clase más amplia de problemas que Euler simple
+
+\item \textbf{Convergencia}: 
+Por el \textbf{Teorema de Lax}, al ser consistente y estable, es convergente
 \end{enumerate}
 
-%-----------------------------------------------------------------------------------
-Para producir descripciones, use el siguiente estilo:
+\subsubsection{Orden de Convergencia}
 
-%-----------------------------------------------------------------------------------
-\begin{description}
-	\item [Primer Elemento] con su respectiva descripción.
-	\item [Segundo Elemento] también con su respectiva descripción.
-\end{description}
+\paragraph{Error Local de Truncamiento}
+\[
+\tau_n = \frac{y(t_{n+1}) - y(t_n)}{h} - \frac{1}{2}[f(t_n, y_n) + f(t_{n+1}, y_n + h f(t_n, y_n))]
+\]
+Expandiendo en serie de Taylor:
+\[
+\tau_n = O(h^2)
+\]
 
+\paragraph{Error Global}
+\[
+\max |y_n - y(t_n)| = O(h^2)
+\]
+\textbf{Conclusión}: Método de \textbf{orden 2}
+
+\subsubsection{Complejidad Temporal}
+
+\paragraph{Por Paso}
+\begin{itemize}
+\item \textbf{2 evaluaciones} de la función $f(t,y)$ por iteración
+\item \textbf{Operaciones aritméticas}: $O(1)$ por paso
+\end{itemize}
+
+\paragraph{Complejidad Total}
+Para $N = \frac{T}{h}$ pasos:
+\[
+C_{\text{total}} = O(N) = O\left(\frac{1}{h}\right)
+\]
+\subsubsection{Relación Precisión vs Costo Computacional}
+
+\begin{itemize}
+\item \textbf{Costo por unidad de precisión}: $O(1/\sqrt{\epsilon})$
+\item \textbf{Eficiencia}: Mejor que Euler simple para misma precisión
+\item \textbf{Compromiso}: Mayor costo por paso que Euler, pero menos pasos para misma precisión
+\end{itemize}
+
+\subsection{Método de Runge-Kutta (RK4)}
+
+\subsubsection{Idea Fundamental}
+Los métodos Runge-Kutta son técnicas de un \textbf{paso} que aproximan la solución de EDOs mediante combinaciones de evaluaciones de la función en puntos intermedios, evitando el cálculo de derivadas superiores.
+
+\subsubsection{Runge-Kutta Clásico (RK4)}
+\[
+\begin{aligned}
+k_1 &= h f(x_n, y_n) \\
+k_2 &= h f(x_n + \tfrac{h}{2}, y_n + \tfrac{k_1}{2}) \\
+k_3 &= h f(x_n + \tfrac{h}{2}, y_n + \tfrac{k_2}{2}) \\
+k_4 &= h f(x_n + h, y_n + k_3) \\
+y_{n+1} &= y_n + \tfrac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
+\end{aligned}
+\]
+
+\subsubsection{¿Por qué está Bien Planteado?}
+\begin{itemize}
+\item \textbf{Consistencia}: Error local de truncamiento $O(h^5)$
+\item \textbf{Estabilidad}: Región de estabilidad más amplia que Euler
+\item \textbf{Convergencia}: Orden 4 garantizado por consistencia + estabilidad
+\end{itemize}
+
+\subsubsection{Orden de Convergencia}
+\begin{itemize}
+\item \textbf{Error local}: $O(h^5)$
+\item \textbf{Error global}: $O(h^4)$ → \textbf{Método de orden 4}
+\item Reduciendo $h$ a la mitad, error disminuye $\approx 16$ veces
+\end{itemize}
+
+\subsubsection{Complejidad Temporal}
+\begin{itemize}
+\item \textbf{Por paso}: 4 evaluaciones de $f(x,y)$
+\item \textbf{Total}: $O(1/h)$ operaciones para intervalo $[a,b]$
+\item \textbf{Eficiencia}: Óptimo para alta precisión con $h$ moderado
+\end{itemize}
+
+\subsubsection{Ventajas Clave}
+\begin{itemize}
+\item \textbf{Alta precisión} con tamaño de paso razonable
+\item \textbf{Autónomo}: No necesita información de pasos anteriores
+\item \textbf{Fácil implementación} vs métodos multipaso
+\item \textbf{Versátil}: Aplicable a sistemas de EDOs
+\end{itemize}
+
+\subsubsection{Limitaciones}
+\begin{itemize}
+\item \textbf{Costo computacional}: 4 evaluaciones por paso
+\item \textbf{Estabilidad condicional} en problemas stiff
+\item \textbf{No adaptativo} en versión básica
+\end{itemize}
+%-----------------------------------------------------------------------------------
+\subsection{Análisis de los Resultados}
+
+Como se observa en la Tabla \ref{tab:comparacion_metodos}, cada método numérico presenta características distintivas que los hacen adecuados para diferentes aplicaciones:
+
+\begin{table}[H]
+\centering
+\small
+\caption{Comparación de Métodos Numéricos}
+\label{tab:comparacion_metodos}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Característica} & \textbf{Euler} & \textbf{Euler M.} & \textbf{RK4} \\
+\midrule
+Orden & 1 & 2 & 4 \\
+Error & $O(h)$ & $O(h^2)$ & $O(h^4)$ \\
+Eval/paso & 1 & 2 & 4 \\
+Estabilidad & Condicional & Mejor & Mayor \\
+Precisión & Baja & Media & Alta \\
+Costo & Bajo & Medio & Alto \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Primer Elemento: Método de Euler}
+\textbf{Descripción}: Es el método más básico que utiliza una aproximación lineal mediante la recta tangente en el punto inicial. Su simplicidad lo hace ideal para introducciones educativas y problemas donde la precisión no es crítica.
+
+\subsubsection{Segundo Elemento: Euler Mejorado}
+\textbf{Descripción}: Este método implementa un esquema predictor-corrector que promedia las pendientes en los puntos inicial y final del intervalo, duplicando el orden de convergencia respecto al método de Euler simple.
+
+\subsubsection{Tercer Elemento: Runge-Kutta 4}
+\textbf{Descripción}: Emplea cuatro evaluaciones de la función por paso para lograr un alto orden de convergencia, siendo el método preferido en aplicaciones que requieren precisión elevada sin la complejidad de métodos multipaso.
+
+\subsection{Conclusión}
+La elección del método numérico adecuado debe basarse en el equilibrio entre precisión requerida, costo computacional aceptable y complejidad de implementación, considerando las características específicas del problema a resolver.
+
+
+\section*{Análisis de Bifurcación en Modelo de Velocidad}
+
+\subsection*{Problema}
+Considere la EDO que modela cambios de régimen en velocidad escalar $z(t)$:
+\[
+\frac{dz}{dt} = \mu z - z^2
+\]
+donde $\mu$ es un parámetro de control que representa la efectividad del avance.
+
+\subsection*{1. Puntos de Equilibrio}
+Los puntos de equilibrio se obtienen resolviendo $\frac{dz}{dt} = 0$:
+\[
+\mu z - z^2 = z(\mu - z) = 0
+\]
+\begin{center}
+\boxed{z = 0 \quad \text{y} \quad z = \mu}
+\end{center}
+
+\subsection*{2. Análisis de Estabilidad}
+La derivada es $f'(z) = \mu - 2z$. Evaluamos en los equilibrios:
+
+\begin{itemize}
+\item \textbf{Punto $z = 0$}: $f'(0) = \mu$
+  \begin{itemize}
+  \item $\mu < 0$: $f'(0) < 0$ → \textbf{Estable}
+  \item $\mu > 0$: $f'(0) > 0$ → \textbf{Inestable}
+  \end{itemize}
+
+\item \textbf{Punto $z = \mu$}: $f'(\mu) = \mu - 2\mu = -\mu$
+  \begin{itemize}
+  \item $\mu < 0$: $f'(\mu) > 0$ → \textbf{Inestable}
+  \item $\mu > 0$: $f'(\mu) < 0$ → \textbf{Estable}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{3. Diagrama de Bifurcación}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{Graficas/Bifurcacion.png}
+\caption{Diagrama de bifurcación transcrítica}
+\end{figure}
+
+\textbf{Tipo de bifurcación}: \textbf{Transcrítica}
+
+\textbf{Características}:
+\begin{itemize}
+\item Dos ramas de puntos fijos se intersectan en $\mu = 0$
+\item Intercambio de estabilidad en el punto de bifurcación
+\item Ambas ramas existen para todo $\mu$
+\end{itemize}
+
+\subsection*{Interpretación Cualitativa}
+
+El parámetro $\mu$ representa el balance entre propulsión y resistencia:
+
+\textbf{$\mu < 0$ (Régimen sin avance)}:
+\begin{itemize}
+\item Punto estable: $z = 0$
+\item El sistema tiende a velocidad cero
+\item La resistencia domina sobre la propulsión
+\item Interpretación física: "Quedarse sin avance"
+\end{itemize}
+
+\textbf{$\mu > 0$ (Régimen con avance)}:
+\begin{itemize}
+\item Punto estable: $z = \mu$
+\item El sistema alcanza velocidad positiva
+\item La propulsión domina sobre la resistencia
+\item Interpretación física: "Lograr avance efectivo"
+\end{itemize}
+
+\textbf{Transición crítica en $\mu = 0$}:
+\begin{itemize}
+\item Punto de bifurcación transcrítica
+\item Intercambio de estabilidad entre $z = 0$ y $z = \mu$
+\item Cambio cualitativo en el comportamiento del sistema
+\item Umbral entre imposibilidad y posibilidad de avance
+\end{itemize}
+
+\subsection*{Significado Físico del Cambio de Signo}
+
+El cambio de signo de $\mu$ marca una transición fundamental:
+
+\begin{itemize}
+\item \textbf{De $\mu < 0$ a $\mu > 0$}: El sistema pasa de un régimen donde no puede avanzar a uno donde sí puede. La velocidad estable cambia de cero a un valor positivo proporcional a $\mu$.
+
+\item \textbf{De $\mu > 0$ a $\mu < 0$}: El sistema pierde la capacidad de avanzar y se estabiliza en reposo. Esto podría representar, por ejemplo, un nadador que ya no puede contrarrestar la corriente.
+
+\item \textbf{En $\mu = 0$}: Situación crítica donde ambos equilibrios coinciden y hay indiferencia entre avanzar o no avanzar.
+\end{itemize}
+%----------------------------------------------------------------------------------
+\subsection{Listas Enumeradas}
+
+Para producir listas enumeradas, utilice el siguiente estilo:
+\begin{enumerate}
+    \item Primer Elemento
+    \item Segundo Elemento
+    \begin{enumerate}
+        \item Segundo Elemento - Subítem Uno
+        \item Segundo Elemento - Subítem Dos
+    \end{enumerate}
+\end{enumerate}
 %-----------------------------------------------------------------------------------
 Para producir cuerpos flotantes (figuras o tablas), asegúrese de numerar
 y etiquetar correctamente cada figura. Las referencias a las figuras deben
@@ -446,6 +722,8 @@ se muestra un código bastante conocido\ldots
 	\end{lstlisting}
 	\caption{Código fuente de ejemplo.\label{fig:code}}
 \end{figure}
+
+
 
 %===================================================================================
 

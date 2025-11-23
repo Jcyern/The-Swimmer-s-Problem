@@ -86,13 +86,13 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
             explicacion = st.checkbox("Explicacion de la grafica y del ejercicio")
 
             st.subheader("Diagrama de Bifurcación📈")
-            miu_min = st.number_input("Valor mínimo de μ", value=-2.0)
-            miu_max = st.number_input("Valor máximo de μ", value=2.0)
+            miu_min = st.number_input("Valor mínimo de μ", value=-5.0)
+            miu_max = st.number_input("Valor máximo de μ", value=5.0)
             valores_rep = st.slider(
                                     "Número de puntos a calcular",
                                     min_value=10,
-                                    max_value=505,
-                                    value=5,  # valor por defecto
+                                    max_value=500,
+                                    value=100,  # valor por defecto
                                     step=10,    # incremento
                                     help="Cantidad de valores de μ a evaluar"
                                     )
