@@ -1,9 +1,9 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
-from Controles_y_Logica.Control_Edo.Plano_Fase import plano_de_fase
+from  ..Logica.Edo.Plano_Fase import plano_de_fase
 
-def mostrar_mi_grafico():
+def mostrar_mi_grafico(panel):
     st.header(" Plano de fase y Estabilidad:")
     st.markdown( """ ### Sea  el sistema lineal  de altura lateral y(t) y su velocidad v(t):""")
 
@@ -83,7 +83,7 @@ def mostrar_mi_grafico():
     st.markdown(" tr(A) traza de la matriz A ")
     st.markdown("Δ determinante de la matriz A")
     
-    st.markdown("Nos damos cuenta que su tipo y estabilidad según la tabla es Espiral Convergente ' Foco Estable ")
+    st.markdown("**Nos damos cuenta que su tipo y estabilidad según la tabla es Espiral Convergente ' Foco Estable ")
 
     st.markdown("##### Veamoslo este sistema lineal en un PLANO DE FASE para ver la espiral convergiendo a (0,0)")
 
@@ -93,14 +93,14 @@ def mostrar_mi_grafico():
     st.title("Plano de fase del sistema dinámico")
 
     # --- Parámetros en la barra lateral ---
-    st.sidebar.header("Parámetros del plano de fase")
 
-    y_min = st.sidebar.number_input("Mínimo eje y", value=-6)
-    y_max = st.sidebar.number_input("Máximo eje y", value=6)
-    v_min = st.sidebar.number_input("Mínimo eje v", value=-6)
-    v_max = st.sidebar.number_input("Máximo eje v", value=6)
-    n_points = st.sidebar.slider("Número de puntos en la malla", 10, 40, 20)
-
+    with panel:
+        with st.expander("Plano de Fase"):
+            y_min = st.number_input("Mínimo eje y", value=-6)
+            y_max = st.number_input("Máximo eje y", value=6)
+            v_min = st.number_input("Mínimo eje v", value=-6)
+            v_max = st.number_input("Máximo eje v", value=6)
+            n_points = st.slider("Número de puntos en la malla", 10, 40, 20)
     Y,V,DY,DV = plano_de_fase((y_min,y_max), (v_min,v_max), n_points)
 
 
@@ -116,4 +116,4 @@ def mostrar_mi_grafico():
 
     # --- Mostrar en Streamlit ---
     st.pyplot(fig)
-mostrar_mi_grafico()
+
