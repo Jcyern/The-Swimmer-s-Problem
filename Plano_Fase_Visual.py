@@ -78,6 +78,23 @@ def mostrar_mi_grafico():
 
 
 """)
+    st.markdown("**Leyenda:**")
+    st.markdown(" tr(A) traza de la matriz A ")
+    st.markdown("Δ determinante de la matriz A")
     
-    
+    st.markdown("Nos damos cuenta que su tipo y estabilidad según la tabla es Espiral Convergente ' Foco Estable ")
+
+    st.markdown("##### Veamoslo este sistema lineal en un PLANO DE FASE para ver la espiral convergiendo a (0,0)")
+
+    st.title("Plano de fase del sistema dinámico")
+
+    # --- Parámetros en la barra lateral ---
+    st.sidebar.header("Parámetros del plano de fase")
+
+    y_min = st.sidebar.number_input("Mínimo eje y", value=-6)
+    y_max = st.sidebar.number_input("Máximo eje y", value=6)
+    v_min = st.sidebar.number_input("Mínimo eje v", value=-6)
+    v_max = st.sidebar.number_input("Máximo eje v", value=6)
+    n_points = st.sidebar.slider("Número de puntos en la malla", 10, 40, 20)
+
 mostrar_mi_grafico()
