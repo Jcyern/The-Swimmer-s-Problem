@@ -1,6 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
+from Controles_y_Logica.Control_Edo.Plano_Fase import plano_de_fase
 
 def mostrar_mi_grafico():
     st.header(" Plano de fase y Estabilidad:")
@@ -86,6 +87,9 @@ def mostrar_mi_grafico():
 
     st.markdown("##### Veamoslo este sistema lineal en un PLANO DE FASE para ver la espiral convergiendo a (0,0)")
 
+
+    #Visual para PLANO de FASE
+
     st.title("Plano de fase del sistema dinámico")
 
     # --- Parámetros en la barra lateral ---
@@ -97,4 +101,19 @@ def mostrar_mi_grafico():
     v_max = st.sidebar.number_input("Máximo eje v", value=6)
     n_points = st.sidebar.slider("Número de puntos en la malla", 10, 40, 20)
 
+    Y,V,DY,DV = plano_de_fase((y_min,y_max), (v_min,v_max), n_points)
+
+
+    # --- Crear el gráfico con streamplot ---
+    fig, ax = plt.subplots(figsize=(6,6))
+    ax.streamplot(Y, V, DY, DV, density=1.2, arrowsize=1)
+    ax.set_xlabel("y")
+    ax.set_ylabel("v")
+    ax.set_title("Plano de fase")
+    ax.axhline(0, color="black", linewidth=0.5)
+    ax.axvline(0, color="black", linewidth=0.5)
+    ax.grid(True)
+
+    # --- Mostrar en Streamlit ---
+    st.pyplot(fig)
 mostrar_mi_grafico()

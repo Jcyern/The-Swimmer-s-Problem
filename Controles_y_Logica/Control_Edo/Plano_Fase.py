@@ -2,14 +2,14 @@ import numpy as np
 #Logica del Plano de Fase 
 
 #--- sistema de ecuaciones diferenciales ---
-def sistema(t, z):
+def sistema(z):
     y, v = z
     dy = v
     dv = -3*v - 4*y
     return [dy, dv]
 
 
-def plano_de_fase(y_range=(-6, 6), v_range=(-6, 6), n_points=20, condiciones=None):
+def plano_de_fase(y_range=(-6, 6), v_range=(-6, 6), n_points=20):
     """
     Dibuja el plano de fase del sistema dinámico.
     
@@ -25,9 +25,9 @@ def plano_de_fase(y_range=(-6, 6), v_range=(-6, 6), n_points=20, condiciones=Non
 
     
     Y, V = np.meshgrid(x,y)
-    DY, DV = sistema(Y,V)
+    DY, DV = sistema([Y,V])
     
     # Normalización de los vectores
     Norma_2= np.sqrt(DY**2 + DV**2)
     
-    return [DY/Norma_2, DV/Norma_2]
+    return [Y,V,DY/Norma_2, DV/Norma_2]
