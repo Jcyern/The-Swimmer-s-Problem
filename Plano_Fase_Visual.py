@@ -63,7 +63,21 @@ def mostrar_mi_grafico():
     - **Parte imaginaria**: $\\Im(\\lambda) = \\pm \\frac{\\sqrt{7}}{2}$ (distinta de cero)
     """)
 
-    
+    st.markdown("#### Clasificación de los puntos críticos según tipo y estabilidad:")
+    st.markdown("""
+            | Casos (según tr(A) y Δ)        | Raíces de la ecuación característica | Tipo de equilibrio             |
+            |--------------------------------|--------------------------------------|--------------------------------|
+            | (tr(A))² > 4Δ                  | Reales, distintas y negativas        | Nodo estable                   |
+            |                                | Reales, distintas y positivas        | Nodo inestable                 |
+            |                                | Reales, de signos opuestos           | Punto de silla (inestable)     |
+            | (tr(A))² = 4Δ                  | Reales, iguales < 0                  | Nodo estable (impropio)        |
+            |                                | Reales, iguales > 0                  | Nodo inestable (impropio)      |
+            | (tr(A))² < 4Δ                  | Complejas, parte real < 0            | Foco estable (espiral convergente) |
+            |                                | Complejas, parte real > 0            | Foco inestable (espiral divergente) |
+            |                                | Complejas, parte real = 0            | Centro o vórtice (órbitas cerradas) |
+
+
+""")
     
     
 mostrar_mi_grafico()
