@@ -1,8 +1,9 @@
 import streamlit as st
+import numpy as np
 import matplotlib.pyplot as plt
 import numpy as np
-from  ..Logica.Edo.Plano_Fase import plano_de_fase
-
+from  ..Logica.Edo.Plano_Fase import plano_de_fase,sistema,Trayectorias
+from scipy.integrate import solve_ivp  # usado para saber la soluciones del sistema 
 def mostrar_mi_grafico(panel):
     st.header(" Plano de fase y Estabilidad:")
     st.markdown( """ ### Sea  el sistema lineal  de altura lateral y(t) y su velocidad v(t):""")
@@ -96,13 +97,40 @@ def mostrar_mi_grafico(panel):
 
     with panel:
         with st.expander("Plano de Fase"):
-            y_min = st.number_input("Mínimo eje y", value=-6)
-            y_max = st.number_input("Máximo eje y", value=6)
-            v_min = st.number_input("Mínimo eje v", value=-6)
-            v_max = st.number_input("Máximo eje v", value=6)
+            col_1,col_2 = st.columns(2)
+            y_min = col_1.number_input("Mínimo eje y", value=-6)
+            y_max = col_2.number_input("Máximo eje y", value=6)
+            col_3,col_4 = st.columns(2)
+            v_min = col_3.number_input("Mínimo eje v", value=-6)
+            v_max = col_4.number_input("Máximo eje v", value=6)
             n_points = st.slider("Número de puntos en la malla", 10, 40, 20)
-    Y,V,DY,DV = plano_de_fase((y_min,y_max), (v_min,v_max), n_points)
+            st.write(" ")
+            st.write(" ")
+            st.markdown("Condiciones Iniciales")
+            col1, col2= st.columns(2)
+            # st.markdown("Trayectoria 1")
+            t1_y = col1.number_input("Trayectoria 1:   y(t)", value=2.0)
+            t1_v = col2.number_input("v(t)", value=10.0)
+            col3, col4= st.columns(2)
+            
+            t2_y = col3.number_input("Trayectoria 2: y(t)", value=-11.0)
+            t2_v = col4.number_input("v(t)", value=1.0)
+            col5, col6= st.columns(2)
+            t3_y = col5.number_input("Trayectoria 3: y(t)", value=0.0)
+            t3_v = col6.number_input("v(t)", value=-2.0)
 
+
+            st.markdown("Rango de Tiempo (t)")
+            col7,col8 = st.columns(2)
+            min = col7.number_input( "Min" ,value=0)
+            max = col8.number_input( "Max" ,value=10)
+            st.write("")
+            cant = st.number_input("Cantidad de puntos", value=300)
+
+    Y,V,DY,DV = plano_de_fase((y_min,y_max), (v_min,v_max), n_points)
+    condiciones = [[t1_y,t1_v],[t2_y,t2_v],[t3_y,t3_v]]
+    t_span =(min,max)
+    t_eval =np.linspace(min,max,cant)
 
     # --- Crear el gráfico con streamplot ---
     fig, ax = plt.subplots(figsize=(6,6))
@@ -114,6 +142,38 @@ def mostrar_mi_grafico(panel):
     ax.axvline(0, color="black", linewidth=0.5)
     ax.grid(True)
 
-    # --- Mostrar en Streamlit ---
+    # --- Trayectorias ---
+    
+    fig1, ax1 = plt.subplots(figsize=(6,6))
+    ax1.set_title("Trayectorias dadas por el usuario en el Plano de Fase")
+    ax1.set_xlabel("y")
+    ax1.set_ylabel("v")
+    ax1.axhline(0, color="black", linewidth=0.5)
+    ax1.axvline(0, color="black", linewidth=0.5)
+    y_m  = 0
+    y_ma = 0
+    v_m  = 0
+    v_ma = 0
+
+    
+    for ci in condiciones:
+        sol = solve_ivp(sistema, t_span, ci, t_eval=t_eval)
+        ax1.plot(sol.y[0], sol.y[1], label=f"CI: y={ci[0]}, v={ci[1]}")
+        if(sol.y[0].min()< y_m):
+            y_m = sol.y[0].min()
+        if(sol.y[0].max()> y_ma):
+            y_ma = sol.y[0].max()
+
+        if(sol.y[1].min()< v_m):
+            v_m = sol.y[1].min()
+        if(sol.y[0].max()> v_ma):
+            v_ma = sol.y[1].max()
+
+    Y1,V1,DY1,DV1 = Trayectorias((y_m,y_ma ),(v_m,  v_ma))
+    ax1.quiver(Y1, V1, DY1, DV1, color="lightgray", angles="xy", scale_units="xy", scale=1)
+
+    
+    # # --- Mostrar en Streamlit ---
     st.pyplot(fig)
+    st.pyplot(fig1)
 
