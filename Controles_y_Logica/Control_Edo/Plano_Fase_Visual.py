@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from  ..Logica.Edo.Plano_Fase import plano_de_fase,sistema,Trayectorias
 from scipy.integrate import solve_ivp  # usado para saber la soluciones del sistema 
-def mostrar_mi_grafico(panel):
+def mostrar_mi_grafico(panel, edo):
     st.header(" Plano de fase y Estabilidad:")
     st.markdown( """ ### Sea  el sistema lineal  de altura lateral y(t) y su velocidad v(t):""")
 
@@ -96,7 +96,8 @@ def mostrar_mi_grafico(panel):
     # --- Parámetros en la barra lateral ---
 
     with panel:
-        with st.expander("Plano de Fase"):
+        with edo:
+            st.header("Parametros del Plano de Fase")
             col_1,col_2 = st.columns(2)
             y_min = col_1.number_input("Mínimo eje y", value=-6)
             y_max = col_2.number_input("Máximo eje y", value=6)

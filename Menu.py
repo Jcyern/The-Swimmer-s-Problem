@@ -9,7 +9,7 @@ st.set_page_config(page_title="Ecuaciones Diferenciales Ordinarias y Matematica 
 st.title("Bienvenidos al proyecto de Ecuaciones Diferenciales Ordinarias junto con Matematica Numerica😎")
 
 #Pestañas y panel
-tab1, tab2, tab3, tab4= st.tabs(["🏠Inicio", "📚EDO", "📈Numerica", "Plano de Fase"])
+tab1, tab2, tab3= st.tabs(["🏠Inicio", "📚EDO", "📈Numerica"])
 panel = st.sidebar
 
 #Esto es lo que va en el inicio aun faltan cosas por terminar y ponerlo mas bonito
@@ -37,7 +37,8 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
 
     with panel: #Panel que usaremos para pasar los parametros
         st.header("⚙️Parámetros")
-        with st.expander("📚 Ecuaciones Diferenciales Ordinarias"):
+        edo = st.expander("📚 Ecuaciones Diferenciales Ordinarias")
+        with edo:
             st.subheader("Condiciones iniciales")
             st.subheader("Parametros del problema")
             x0 = st.number_input("Valor inicial de x" , value = -0.50)
@@ -101,7 +102,7 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
 
 
     #Llamada a la solucion de la edo
-    Metodos(x0, y0 ,a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok, explicacion,  curvas_sol_ok, cond_inicial,  miu_min, miu_max, valores_rep, x_vals )
+    Metodos(x0, y0 ,a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok, explicacion,  curvas_sol_ok, cond_inicial,  miu_min, miu_max, valores_rep, x_vals, panel, edo )
 
 
 with tab3:  #Esta pestaña es para la parte de Numerica solo
@@ -141,9 +142,6 @@ with tab3:  #Esta pestaña es para la parte de Numerica solo
                          metodo_comparar,
                          a,v0,vs,h)
     Errores_Numericos()
-
-with tab4:
-    mostrar_mi_grafico(panel)
 
 
 
