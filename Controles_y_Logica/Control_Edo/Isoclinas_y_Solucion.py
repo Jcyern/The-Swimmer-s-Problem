@@ -11,7 +11,7 @@ def Isoclinas_VS(Funcion, rango_x, rango_y,a, v0,xlim,ylim, x_min, y_min,vs, x_v
     #LLamado a la Parte Logica
     X,Y,U,V = Isoclinas(Funcion, rango_x, rango_y,a,v0,vs)
     fig, ax =  plt.subplots(figsize=(8, 6))
-    plt.quiver(X, Y, U, V, angles="xy",width=0.0015)
+    ax.quiver(X, Y, U, V, angles="xy",width=0.001)
     if curvas_sol_ok and len(cond_inicial) > 0:
         for C in cond_inicial:
             Ci= sd(C[0], C[1], a, v0, vs)
@@ -25,11 +25,11 @@ def Isoclinas_VS(Funcion, rango_x, rango_y,a, v0,xlim,ylim, x_min, y_min,vs, x_v
     ax.set_ylabel('Eje y', fontsize=12)
     ax.set_title('Campo de Isoclinas', fontsize=14)
     ax.grid(True, alpha=0.3)
-    plt.xlim(x_min,xlim) 
-    plt.ylim(y_min,ylim) 
-    plt.title('Campo de Pendientes')
+    ax.set_xlim(x_min,xlim) 
+    ax.set_ylim(y_min,ylim) 
     st.latex("📈 Ecuación Diferencial:  dy/dx = v0*(1 - (x^4)/a^4)/vs")
-    plt.legend()
+    if curvas_sol_ok:
+        ax.legend()
     st.pyplot(fig)
     #Esta es la informacion del metodo de las isoclinas
     st.subheader("👩🏼‍💼Explicacion del Metodo de las Isoclinas")

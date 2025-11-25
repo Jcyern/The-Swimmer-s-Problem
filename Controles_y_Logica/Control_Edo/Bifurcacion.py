@@ -23,10 +23,10 @@ def Bifurcacion(miu_min, miu_max_, valores_rep, x_min, x_max, y_min, y_max):
     st.pyplot(fix)
     columna1, columna2 = st.columns(2)
     with columna1:
-        st.subheader("📊 Datos del Diagrama de Bifurcación")
+        st.subheader("🧑🏻‍🏫 Explicacion del Diagrama de Bifurcacion")
         st.write(f'Rango de μ: [{miu_min}, {miu_max_}]')
         st.write(f'Número de puntos evaluados: {valores_rep}')
-        st.markdown("""
+        st.markdown(r"""
 ### Puntos de Equilibrio
 
 Los puntos de equilibrio se obtienen resolviendo dz/dt = 0:
@@ -36,7 +36,7 @@ $$
 $$
 
 $$
-z = 0 \quad \text{y} \quad z = \mu
+z = 0 \quad y \quad z = \mu
 $$
 
 ### Análisis de Estabilidad
@@ -54,7 +54,7 @@ La derivada es $f'(z) = \mu - 2z$. Evaluamos en los equilibrios:
 - $\mu > 0$: $f'(\mu) < 0$ → **Estable**
 """)
     with columna2:
-        st.subheader("🧑🏻‍🏫 Explicación del Diagrama de Bifurcación")
+        st.subheader("📊 Datos del Diagrama de Bifurcación")
         st.markdown("""
 ## Tipo de Bifurcación: **Transcrítica**
 
