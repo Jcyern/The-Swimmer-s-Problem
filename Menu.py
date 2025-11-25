@@ -1,13 +1,15 @@
 import streamlit as st
 from Controles_y_Logica.Control_Edo.Control_Edo import Metodos
 from Controles_y_Logica.Control_Numerica.Controles_de_Numerica import Metodos_Numerico, Errores_Numericos
+from Controles_y_Logica.Control_Edo.Plano_Fase_Visual import mostrar_mi_grafico
+
 #Titulo de la pagina
 st.set_page_config(page_title="Ecuaciones Diferenciales Ordinarias y Matematica Numerica", layout="wide")
 #Inicio
 st.title("Bienvenidos al proyecto de Ecuaciones Diferenciales Ordinarias junto con Matematica Numerica😎")
 
 #Pestañas y panel
-tab1, tab2, tab3= st.tabs(["🏠Inicio", "📚EDO", "📈Numerica"])
+tab1, tab2, tab3, tab4= st.tabs(["🏠Inicio", "📚EDO", "📈Numerica", "Plano de Fase"])
 panel = st.sidebar
 
 #Esto es lo que va en el inicio aun faltan cosas por terminar y ponerlo mas bonito
@@ -34,7 +36,7 @@ with tab1 :
 with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi parte
 
     with panel: #Panel que usaremos para pasar los parametros
-        st.header("⚙️Parametros")
+        st.header("⚙️Parámetros")
         with st.expander("📚 Ecuaciones Diferenciales Ordinarias"):
             st.subheader("Condiciones iniciales")
             st.subheader("Parametros del problema")
@@ -105,7 +107,7 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
 with tab3:  #Esta pestaña es para la parte de Numerica solo
     with panel:
         #Es un panel que baja se me olvido el nombre de eso 
-        with st.expander("🧮Matematica Numerica"):
+        with st.expander("🧮Matemática Numérica"):
             #xf = st.number_input("Valor que quiere calcular")
             h = st.number_input("Incremento", min_value=1e-14, max_value= 1000.000000, step=0.01, format="%.14f", value = 0.1)
 
@@ -139,3 +141,10 @@ with tab3:  #Esta pestaña es para la parte de Numerica solo
                          metodo_comparar,
                          a,v0,vs,h)
     Errores_Numericos()
+
+with tab4:
+    mostrar_mi_grafico(panel)
+
+
+
+
