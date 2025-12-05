@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.6.20)  4 DEC 2025 23:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.6.20)  5 DEC 2025 10:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -500,7 +500,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 156.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<Graficas/Ejemp_1.jpg, id=183, 665.48625pt x 388.45125pt>
+<Graficas/Ejemp_1.jpg, id=191, 665.48625pt x 388.45125pt>
 File: Graficas/Ejemp_1.jpg Graphic file (type jpg)
 <use Graficas/Ejemp_1.jpg>
 Package pdftex.def Info: Graficas/Ejemp_1.jpg  used on input line 160.
@@ -551,7 +551,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 308.
 
-<Graficas/Isoclinas.png, id=211, 500.1084pt x 396.7623pt>
+<Graficas/Isoclinas.png, id=219, 500.1084pt x 396.7623pt>
 File: Graficas/Isoclinas.png Graphic file (type png)
 <use Graficas/Isoclinas.png>
 Package pdftex.def Info: Graficas/Isoclinas.png  used on input line 335.
@@ -559,7 +559,7 @@ Package pdftex.def Info: Graficas/Isoclinas.png  used on input line 335.
 
 Underfull \vbox (badness 2582) has occurred while \output is active []
 
-<Graficas/Grafica_Euler.jpg, id=213, 368.37625pt x 358.33875pt>
+<Graficas/Grafica_Euler.jpg, id=221, 368.37625pt x 358.33875pt>
 File: Graficas/Grafica_Euler.jpg Graphic file (type jpg)
 <use Graficas/Grafica_Euler.jpg>
 Package pdftex.def Info: Graficas/Grafica_Euler.jpg  used on input line 352.
@@ -578,12 +578,22 @@ Underfull \hbox (badness 1237) in paragraph at lines 551--552
 Underfull \vbox (badness 1400) has occurred while \output is active []
 
  [5]
-<Graficas/Bifurcacion.png, id=240, 500.1084pt x 399.29175pt>
+<Graficas/Bifurcacion.png, id=248, 500.1084pt x 399.29175pt>
 File: Graficas/Bifurcacion.png Graphic file (type png)
 <use Graficas/Bifurcacion.png>
 Package pdftex.def Info: Graficas/Bifurcacion.png  used on input line 624.
 (pdftex.def)             Requested size: 193.47578pt x 154.47415pt.
- [6 <./Graficas/Bifurcacion.png>] [7] (./jcematcom.aux
+ [6 <./Graficas/Bifurcacion.png>] [7]
+Overfull \hbox (40.06306pt too wide) detected at line 893
+[]
+ []
+
+<Graficas/plano_fase.png, id=265, 433.62pt x 433.62pt>
+File: Graficas/plano_fase.png Graphic file (type png)
+<use Graficas/plano_fase.png>
+Package pdftex.def Info: Graficas/plano_fase.png  used on input line 900.
+(pdftex.def)             Requested size: 193.47578pt x 193.47969pt.
+[8 <./Graficas/plano_fase.png>] (./jcematcom.aux
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 LaTeX Info: Redefining \. on input line 13.
@@ -600,21 +610,21 @@ L3 programming layer <2024-01-22>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `jcematcom.out' has not changed.
-(rerunfilecheck)             Checksum: C59071A3A5157F65824B852F0BB194B4;8576.
+(rerunfilecheck)             Checksum: 95D85253349AA34E9596223975E0D1AE;9084.
  ) 
 Here is how much of TeX's memory you used:
- 14898 strings out of 474222
- 234862 string characters out of 5748733
+ 14913 strings out of 474222
+ 235222 string characters out of 5748733
  1949975 words of memory out of 5000000
- 36897 multiletter control sequences out of 15000+600000
+ 36908 multiletter control sequences out of 15000+600000
  566936 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,9n,93p,1186b,469s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,9n,93p,1186b,576s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on jcematcom.pdf (7 pages, 556107 bytes).
+Output written on jcematcom.pdf (8 pages, 659637 bytes).
 PDF statistics:
- 360 PDF objects out of 1000 (max. 8388607)
- 301 compressed objects within 4 object streams
- 67 named destinations out of 1000 (max. 500000)
- 373 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 375 PDF objects out of 1000 (max. 8388607)
+ 313 compressed objects within 4 object streams
+ 71 named destinations out of 1000 (max. 500000)
+ 394 words of extra memory for PDF output out of 10000 (max. 10000000)
 

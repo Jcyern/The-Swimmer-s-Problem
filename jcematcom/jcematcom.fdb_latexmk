@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1764909573.08994 "/home/juanca/Documentos/2 Year/EDO/Proyecto/The-Swimmer-s-Problem/jcematcom/jcematcom.tex" "jcematcom.pdf" "jcematcom" 1764909574.9652 0
+["pdflatex"] 1764948399.39301 "/home/juanca/Documentos/2 Year/EDO/Proyecto/The-Swimmer-s-Problem/jcematcom/jcematcom.tex" "jcematcom.pdf" "jcematcom" 1764948401.44324 0
   "/etc/texmf/web2c/texmf.cnf" 1750447271.88526 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/juanca/Documentos/2 Year/EDO/Proyecto/The-Swimmer-s-Problem/jcematcom/jcematcom.tex" 1764909573.78056 30656 62b36bca44ee6c56b6118101fa467b32 ""
+  "/home/juanca/Documentos/2 Year/EDO/Proyecto/The-Swimmer-s-Problem/jcematcom/jcematcom.tex" 1764948396.74998 33123 66785c0402dbdcb843278cb5dc8c80f8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0700.tfm" 1136768653 1536 73da8e8f1d2a4c957d51ca133585586b ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -130,10 +130,11 @@
   "Graficas/Ejemp_1.jpg" 1763960198.28846 20916 1b3205c60f7b94c5adfc7d8b103acbda ""
   "Graficas/Grafica_Euler.jpg" 1763960198.28901 22015 3933257be6ad39d181b8ee279c3c8562 ""
   "Graficas/Isoclinas.png" 1763960198.29196 157545 cc48f663d856900743aee21837dd58f5 ""
-  "jcematcom.aux" 1764909574.8052 9293 94f12d6b4ffd7aba9919011a0e6dd4de "pdflatex"
-  "jcematcom.out" 1764909574.8102 8576 c59071a3a5157f65824b852f0bb194b4 "pdflatex"
+  "Graficas/plano_fase.png" 1764003505.48958 114941 a127c4a136554428a7f3d6216ea43fb6 ""
+  "jcematcom.aux" 1764948401.24629 9723 647d2b2eb3d7169d2c46dcda3fda3c28 "pdflatex"
+  "jcematcom.out" 1764948401.25529 9084 95d85253349aa34e9596223975e0d1ae "pdflatex"
   "jcematcom.sty" 1763960198.30842 12211 19d2dc953da13398ceaac43a75a5d0ce ""
-  "jcematcom.tex" 1764909573.78056 30656 62b36bca44ee6c56b6118101fa467b32 ""
+  "jcematcom.tex" 1764948396.74998 33123 66785c0402dbdcb843278cb5dc8c80f8 ""
   (generated)
   "jcematcom.aux"
   "jcematcom.log"

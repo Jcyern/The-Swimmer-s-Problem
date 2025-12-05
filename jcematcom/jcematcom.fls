@@ -236,6 +236,11 @@ INPUT ./Graficas/Bifurcacion.png
 INPUT ./Graficas/Bifurcacion.png
 INPUT ./Graficas/Bifurcacion.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm
+INPUT ./Graficas/plano_fase.png
+INPUT ./Graficas/plano_fase.png
+INPUT ./Graficas/plano_fase.png
+INPUT ./Graficas/plano_fase.png
+INPUT ./Graficas/plano_fase.png
 INPUT jcematcom.aux
 INPUT ./jcematcom.out
 INPUT ./jcematcom.out

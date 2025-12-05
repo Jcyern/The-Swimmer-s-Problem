@@ -41,3 +41,5 @@ def Trayectorias(y_range=(-6, 6), v_range=(-6, 6), n_points=20):
     DY, DV = sistema(0,[Y,V])
     Norma_2= np.sqrt(DY**2 + DV**2)
     return [Y,V,DY/Norma_2,DV/Norma_2]
+
+plano_de_fase()

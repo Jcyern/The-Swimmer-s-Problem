@@ -78,7 +78,7 @@ Lic. Tutor Dos, \emph{Centro}}
 \jcematcomheading{\the\year}{1-\pageref{end}}{A. Uno, A. Dos}
 
 %-----------------------------------------------------------------------------------
-\ShortHeadings{Ejemplo JCE}{Autores}
+% \ShortHeadings{Autores}
 %===================================================================================
 
 
@@ -747,7 +747,7 @@ Resolvamos los puntos críticos para el sistema antes dado :
 \[
 \begin{cases}
 v = 0 \\
--3v - 4y = 0
+-3v - 4y = 03
 \end{cases}
 \]
 
@@ -766,15 +766,141 @@ Por lo tanto, el único punto crítico es:
 \boxed{(y, v) = (0, 0)}.
 \]
 
-\subsection{Equilibrios y estabilidad}
-Dentro del plano de fase, los \textbf{puntos de equilibrio} corresponden a estados $x^*$ tales que $f(x^*)=0$. En estos puntos, el sistema permanece invariante en el tiempo. La noción de \textbf{estabilidad} se refiere a la respuesta del sistema frente a perturbaciones en torno a dichos equilibrios:
+
+\subsection{Estabilidad}
+
+Para estudiar la \textbf{estabilidad} de un punto de equilibrio, se analiza el comportamiento de las soluciones cercanas a dicho punto. Formalmente:
+
 \begin{itemize}
-    \item Un equilibrio es \textbf{estable} si las trayectorias que parten de condiciones iniciales cercanas permanecen próximas a él o tienden nuevamente hacia dicho punto.
-    \item Es \textbf{inestable} si pequeñas perturbaciones provocan que las trayectorias diverjan con el tiempo.
-    \item Se denomina \textbf{asintóticamente estable} cuando, además de ser estable, las trayectorias convergen al equilibrio conforme $t \to \infty$.
+  \item El equilibrio $(x_0, y_0)$ es \textbf{estable} si, para cualquier vecindad del punto, existe una región más pequeña tal que toda trayectoria que comience en ella permanece cerca del equilibrio para todo tiempo futuro.
+  \item Es \textbf{asintóticamente estable} si además de ser estable, las trayectorias tienden al equilibrio cuando $t \to \infty$.
+  \item Es \textbf{inestable} si existe al menos una trayectoria que, partiendo arbitrariamente cerca del equilibrio, se aleja de él con el tiempo.
 \end{itemize}
 
-El análisis de estabilidad suele realizarse mediante la \textbf{linealización} del sistema alrededor de un equilibrio y el estudio de los autovalores de la matriz jacobiana. La naturaleza de dichos autovalores (reales o complejos, positivos o negativos) determina la clasificación del equilibrio como nodo, foco, centro o silla, cada uno con características geométricas particulares en el plano de fase.
+En sistemas lineales de la forma:
+
+
+\[
+\dot{\mathbf{x}} = A \mathbf{x},
+\]
+
+
+la estabilidad se determina a partir de los \textbf{valores propios} de la matriz $A$:
+
+\begin{itemize}
+  \item Si todos los valores propios tienen parte real negativa, el equilibrio es \textbf{asintóticamente estable}.
+  \item Si al menos un valor propio tiene parte real positiva, el equilibrio es \textbf{inestable}.
+  \item Si los valores propios tienen parte real no positiva y alguno es puramente imaginario, el equilibrio es \textbf{estable} pero no asintóticamente estable.
+\end{itemize}
+
+\subsubsection{Ejemplo aplicado al sistema dado}
+
+Para el sistema:
+
+
+\[
+A =
+\begin{pmatrix}
+0 & 1 \\
+-4 & -3
+\end{pmatrix},
+\]
+
+
+los valores propios se obtienen resolviendo:
+
+
+\[
+\det(A - \lambda I) = 
+\begin{vmatrix}
+-\lambda & 1 \\
+-4 & -3 - \lambda
+\end{vmatrix}
+= \lambda^2 + 3\lambda + 4 = 0.
+\]
+
+
+
+Las raíces son:
+
+
+\[
+\lambda_{1,2} = \frac{-3 \pm \sqrt{9 - 16}}{2} = \frac{-3 \pm i\sqrt{7}}{2}.
+\]
+
+
+
+Como ambos valores propios tienen parte real negativa ($-3/2$), concluimos que:
+
+
+\[
+\boxed{\text{El equilibrio en $(0,0)$ es asintóticamente estable.}}
+\]
+
+
+\subsection{Clasificación de los equilibrios en sistemas lineales}
+
+La naturaleza del equilibrio en sistemas bidimensionales lineales se determina a partir del trazo 
+$\mathrm{tr}(A)$ y el determinante $\Delta = \det(A)$. El polinomio característico es:
+
+
+\[
+\lambda^2 - \mathrm{tr}(A)\,\lambda + \Delta = 0.
+\]
+
+
+
+Según la relación entre $(\mathrm{tr}(A))^2$ y $4\Delta$, se obtiene la siguiente clasificación:
+
+
+\begin{itemize}
+  \item \textbf{$(\mathrm{tr}(A))^2 > 4\Delta$:}
+    \begin{itemize}
+      \item Raíces reales, distintas y negativas $\;\Rightarrow$ Nodo estable.
+      \item Raíces reales, distintas y positivas $\;\Rightarrow$ Nodo inestable.
+      \item Raíces reales de signos opuestos $\;\Rightarrow$ Punto de silla (inestable).
+    \end{itemize}
+
+  \item \textbf{$(\mathrm{tr}(A))^2 = 4\Delta$:}
+    \begin{itemize}
+      \item Raíces reales, iguales $<0 \;\Rightarrow$ Nodo estable (impropio).
+      \item Raíces reales, iguales $>0 \;\Rightarrow$ Nodo inestable (impropio).
+    \end{itemize}
+
+  \item \textbf{$(\mathrm{tr}(A))^2 < 4\Delta$:}
+    \begin{itemize}
+      \item Raíces complejas, parte real $<0 \;\Rightarrow$ Foco estable (espiral convergente).
+      \item Raíces complejas, parte real $>0 \;\Rightarrow$ Foco inestable (espiral divergente).
+      \item Raíces complejas, parte real $=0 \;\Rightarrow$ Centro (órbitas cerradas).
+    \end{itemize}
+\end{itemize}
+
+
+Para nuestro caso obtuvimos raíces complejas:
+
+
+\[
+\lambda_{1,2} = \frac{-3 \pm i\sqrt{7}}{2}.
+\]
+
+
+
+La parte real es negativa ($-3/2$), por lo que:
+
+
+\[
+\boxed{\text{El equilibrio en $(0,0)$ es un foco estable (espiral convergente).}}
+\]
+
+Mostremos el plano de Fase de el sistema planteado:
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{Graficas/plano_fase.png}
+\caption{Plano de Fase }
+\end{figure}
+
 
 \subsection{Importancia del plano de fase}
 El plano de fase no sólo proporciona una representación visual de la dinámica, sino que también permite:
