@@ -53,7 +53,7 @@
 %-----------------------------------------------------------------------------------
 % Título
 %-----------------------------------------------------------------------------------
-\title{Informe del Proyecto de Ecuaciones Diferenciales Ordinarias y Matemática Numérica}
+\title{Análisis y Aplicaciones de las EDO en el Problema del Nadador}
 
 %-----------------------------------------------------------------------------------
 % Autores
@@ -69,8 +69,7 @@
 % Tutores
 %-----------------------------------------------------------------------------------
 \tutors{\\
-Dr. Damian Valdés Santiago, \emph{Facultad de Matemática y Computación} \\
-Lic. Ania Mesa, \emph{Facultad de Matemática y Computación}}
+MSc. Ania Mesa, \emph{Facultad de Matemática y Computación}}
 
 %-----------------------------------------------------------------------------------
 % Headings
@@ -106,7 +105,7 @@ Lic. Ania Mesa, \emph{Facultad de Matemática y Computación}}
 %-----------------------------------------------------------------------------------
 \begin{abstract}
 
-	  Este proyecto integra ecuaciones diferenciales ordinarias y métodos numéricos para modelar sistemas dinámicos. Comienza con el problema del nadador en un río, donde se deriva la ecuación diferencial y se visualiza mediante isoclinas. Luego se aplican métodos numéricos (Euler, Euler mejorado y Runge-Kutta) analizando su estabilidad y convergencia. Se verifica que el problema esté bien planteado y se estudia la estabilidad de los esquemas numéricos. Adicionalmente, se construye un diagrama de bifurcación que revela la naturaleza del cambio y su interpretación cualitativa. Finalmente, se analiza el plano de fase de un sistema de ecuaciones, clasificando puntos críticos y describiendo el comportamiento global. El proyecto demuestra la sinergia entre el análisis cualitativo y cuantitativo en el estudio de sistemas dinámicos.
+	  En este proyecto se integran ecuaciones diferenciales ordinarias y métodos numéricos para modelar sistemas dinámicos. Comienza con el problema del nadador en un río, donde se deriva la ecuación diferencial y se visualiza mediante isoclinas. Luego se aplican métodos numéricos (Euler, Euler mejorado y Runge-Kutta) analizando su estabilidad y convergencia. Se verifica que el problema esté bien planteado y se estudia la estabilidad de los esquemas numéricos. Adicionalmente, se construye un diagrama de bifurcación identificando el tipo de bifurcación y su interpretación cualitativa. Finalmente, se analiza el plano de fase de un sistema de ecuaciones, clasificando puntos críticos y describiendo el comportamiento global. Se demuestra la sinergia entre el análisis cualitativo y cuantitativo en el estudio de sistemas dinámicos.
 
 \end{abstract}
 
@@ -117,17 +116,24 @@ Lic. Ania Mesa, \emph{Facultad de Matemática y Computación}}
 
 \begin{enabstract}
 
-  This comprehensive project bridges ordinary differential equations (ODEs) with numerical analysis to study dynamical systems. It begins with the swimmer problem in a river, deriving the governing ODE and visualizing solutions through isoclines. Numerical methods—Euler, improved Euler, and Runge-Kutta—are implemented and compared, analyzing their stability, convergence, and accuracy. The project verifies the problem's well-posedness and examines numerical scheme stability. A bifurcation analysis identifies bifurcation types and their qualitative implications. Finally, phase plane analysis of ODE systems classifies critical points and characterizes global dynamics. The work demonstrates the synergy between analytical and computational approaches in understanding complex mathematical models, highlighting how numerical methods complement qualitative analysis in studying dynamical behavior across different mathematical contexts. This integrated approach provides valuable insights into both theoretical and practical aspects of differential equations and numerical computation.
+  It bridges ordinary differential equations (ODEs) with numerical analysis to study dynamical systems. It begins with the swimmer problem in a river, deriving the governing ODE and visualizing solutions through isoclines. Numerical methods—Euler, improved Euler, and Runge-Kutta—are implemented and compared, analyzing their stability, convergence, and accuracy. The project verifies the problem's well-posedness and examines numerical scheme stability. A bifurcation analysis identifies bifurcation types and their qualitative implications. Finally, phase plane analysis of ODE systems classifies critical points and characterizes global dynamics. The work demonstrates the synergy between analytical and computational approaches in understanding complex mathematical models, highlighting how numerical methods complement qualitative analysis in studying dynamical behavior across different mathematical contexts. The integrated approach provides valuable insights into both theoretical and practical aspects of differential equations and numerical computation.
 
 \end{enabstract}
 
 %-----------------------------------------------------------------------------------
 % Palabras clave
 %-----------------------------------------------------------------------------------
+\begin{keywords}
+    ecuaciones diferenciales ordinarias, métodos numéricos, isoclinas, Runge--Kutta, Euler mejorado, bifurcación transcrítica, plano de fase, estabilidad y convergencia.
+\end{keywords}
 
 %-----------------------------------------------------------------------------------
 % Temas
 %-----------------------------------------------------------------------------------
+\begin{topics}
+    Ecuaciones diferenciales ordinarias, Análisis cualitativo y métodos numéricos de sistemas dinámicos.
+\end{topics}
+
 
 
 %-----------------------------------------------------------------------------------
@@ -145,7 +151,7 @@ Lic. Ania Mesa, \emph{Facultad de Matemática y Computación}}
 %-----------------------------------------------------------------------------------
 \section{Breve Explicación del Problema del Nadador}\label{sec:intro}
 
-Tenemos un río que fluye hacia el norte. Sus orillas son las rectas $x = \pm a$, con un ancho de $w = 2a$ y el eje $y$ su centro.
+Se tiene un río que fluye hacia el norte. Sus orillas son las rectas $x = \pm a$, con un ancho de $w = 2a$ y el eje $y$ su centro.
 
 \begin{figure}[H]
     \centering
@@ -154,35 +160,35 @@ Tenemos un río que fluye hacia el norte. Sus orillas son las rectas $x = \pm a$
     \label{fig:ejemplo}
 \end{figure}
 
-Supóngase que la velocidad $v_R$ a la cual el agua fluye se incrementa conforme se acerca al centro del río, y en realidad está dada en términos de la distancia $x$ desde el centro por:
+Se supone que la velocidad $v_R$ a la cual el agua fluye se incrementa conforme se acerca al centro del río, y en realidad está dada en términos de la distancia $x$ desde el centro por:
 \[
 v_R = v_0 \left( 1 - \frac{x^2}{a^2} \right)
 \]
 
-Se puede utilizar la ecuación para verificar que el agua fluye más rápido en el centro, donde $v_R = v_0$, y que $v_R = 0$ en cada orilla del río.
+Es posible utilizar la ecuación para verificar que el agua fluye más rápido en el centro, donde $v_R = v_0$, y que $v_R = 0$ en cada orilla del río.
 
-Supóngase que un nadador inicia en el punto $(-a, 0)$ de la orilla oeste y nada hacia el este (en relación con el agua) con una velocidad constante $v_S$. Su vector de velocidad (relativo al cauce del río) tiene una componente horizontal $v_S$ y una componente vertical $v_R$. En consecuencia, el ángulo de dirección $\alpha$ del nadador está dado por:
+Se supone que un nadador inicia en el punto $(-a, 0)$ de la orilla oeste y nada hacia el este (en relación con el agua) con una velocidad constante $v_S$. Su vector de velocidad (relativo al cauce del río) tiene una componente horizontal $v_S$ y una componente vertical $v_R$. En consecuencia, el ángulo de dirección $\alpha$ del nadador está dado por:
 \[
 \tan \alpha = \frac{v_R}{v_S}
 \]
 
-Como sabemos que $\tan \alpha = dy/dx$ entonces podemos sustituirla por la primera ecuación en esta, quedándonos la ecuación diferencial de primer orden:
+Como $\tan \alpha = dy/dx$ entonces se sustituye la primera ecuación en esta, quedando la ecuación diferencial de primer orden:
 \[
 \frac{dy}{dx} = \frac{v_R}{v_S} = \frac{v_0}{v_S} \left(1 - \frac{x^2}{a^2}\right)
 \]
 
-Observemos que esta ecuación se puede resolver fácilmente usando el método de variables separables.
+Esta ecuación se puede resolver fácilmente usando el método de variables separables.
 
 \subsection{Solución de la Ecuación Diferencial}
 
 \subsubsection{Paso 1: Separación de variables}
-Separamos las variables $y$ y $x$:
+Se separan las variables $y$ y $x$:
 \[
 dy = \frac{v_0}{v_S} \left(1 - \frac{x^2}{a^2}\right) dx
 \]
 
 \subsubsection{Paso 2: Integración}
-Integramos ambos lados:
+Se integran ambos lados:
 \[
 \int dy = \frac{v_0}{v_S} \int \left(1 - \frac{x^2}{a^2}\right) dx
 \]
@@ -224,7 +230,7 @@ y = \frac{v_0}{v_S} \left(x - \frac{x^3}{3a^2} + \frac{2a}{3}\right)
 \]
 
 \subsection{Ejemplo}
-Supóngase que el río tiene 1 mi de ancho y la velocidad en su parte central $v_0 = 9$ mi/h. Si la velocidad del nadador es $v_S = 3$ mi/h, entonces la ecuación toma la forma $\frac{dy}{dx} = 3(1 - 4x^2)$.
+Se supone que el río tiene 1 mi de ancho y la velocidad en su parte central $v_0 = 9$ mi/h. Si la velocidad del nadador es $v_S = 3$ mi/h, entonces la ecuación toma la forma $\frac{dy}{dx} = 3(1 - 4x^2)$.
 
 La integración resulta en:
 \[
@@ -241,28 +247,28 @@ Entonces:
 y\left(\frac{1}{2}\right) = 3\left(\frac{1}{2}\right) - 4\left(\frac{1}{2}\right)^3 + 1 = \frac{3}{2} - \frac{1}{2} + 1 = 2
 \]
 
-Así que el nadador es llevado por la corriente 2 millas río abajo, mientras que nada 1 milla a lo ancho del río.
+Por lo que el nadador es llevado por la corriente 2 millas río abajo, mientras que nada 1 milla a lo ancho del río.
 
 \section{Problema del Nadador en el Proyecto}\label{sec:proyecto}
 
-En nuestro caso el problema del nadador es muy similar al explicado antes. En este proyecto la ecuación diferencial obtiene la siguiente forma:
+En este caso el problema del nadador es muy similar al explicado antes. En este proyecto la ecuación diferencial obtiene la siguiente forma:
 \[
 \frac{dy}{dx} = \frac{v_0}{v_S} \left(1 - \frac{x^4}{a^4}\right)
 \]
 
-La manera en que la podemos resolver es similar a como resolvimos la ecuación diferencial en la sección anterior. Por lo que la solución general a esta ecuación sería:
+Se puede resolver similar a la ecuación diferencial en la sección anterior. Por lo que la solución general a esta ecuación sería:
 \[
 y(x) = \frac{v_0}{v_S} \left(x - \frac{x^5}{5a^4}\right) + C
 \]
 donde $C$ es la constante de integración.
 
 \subsection{Ejemplo}
-Utilizándose los mismos valores del ejemplo anterior tenemos que la ecuación diferencial toma la forma $\frac{dy}{dx} = 3(1 - 16x^4)$.
+Utilizando los mismos valores del ejemplo anterior se tiene que la ecuación diferencial toma la forma $\frac{dy}{dx} = 3(1 - 16x^4)$.
 
-Encontremos entonces el valor de la constante de integración $C$ usando la condición inicial $y(-1/2) = 0$.
+Se halla entonces el valor de la constante de integración $C$ usando la condición inicial $y(-1/2) = 0$.
 
 \subsubsection{Cálculo de la Constante $C$}
-Sustituimos los valores en la condición inicial $y\left(-\frac{1}{2}\right) = 0$:
+Se sustituyen los valores en la condición inicial $y\left(-\frac{1}{2}\right) = 0$:
 \[
 0 = \frac{9}{3} \left(-\frac{1}{2} - \frac{\left(-\frac{1}{2}\right)^5}{5\left(\frac{1}{2}\right)^4}\right) + C
 \]
@@ -276,7 +282,7 @@ Sustituimos los valores en la condición inicial $y\left(-\frac{1}{2}\right) = 0
 0 = -\frac{6}{5} + C
 \]
 
-Como último paso despejamos a $C$ y obtendremos la curva solución que pasa por el punto $(-1/2,0)$:
+Por último se despeja a $C$ y se obtiene la curva solución que pasa por el punto $(-1/2,0)$:
 \[
 C = \frac{6}{5}
 \]
@@ -313,14 +319,14 @@ y\left(\frac{1}{2}\right) = \frac{12}{5} = 2.4
 \subsubsection{Interpretación}
 Con los valores dados:
 \begin{itemize}
-    \item El nadador es llevado por la corriente $2.4$ millas río abajo
-    \item Nada 1 milla a lo ancho del río (desde $x = -\frac{1}{2}$ hasta $x = \frac{1}{2}$)
-    \item La relación $\frac{v_0}{v_S} = 3$ indica que la corriente máxima es el triple de la velocidad del nadador
+    \item El nadador es llevado por la corriente $2.4$ millas río abajo,
+    \item Nada 1 milla a lo ancho del río (desde $x = -\frac{1}{2}$ hasta $x = \frac{1}{2}$),
+    \item La relación $\frac{v_0}{v_S} = 3$ indica que la corriente máxima es el triple de la velocidad del nadador.
 \end{itemize}
 
 \section{Método de las Isoclinas}
 
-El método de las isoclinas es muy usado para poder graficar el comportamiento de las soluciones de una ecuación diferencial sin necesidad de resolverla. Consiste en encontrar curvas en el plano $xy$ donde la pendiente de la solución es constante.
+El método de las isoclinas se usa frecuentemente para poder graficar el comportamiento de las soluciones de una ecuación diferencial sin necesidad de resolverla. Consiste en encontrar curvas en el plano $xy$ donde la pendiente de la solución es constante.
 
 \begin{figure}[H]
     \centering
@@ -330,11 +336,11 @@ El método de las isoclinas es muy usado para poder graficar el comportamiento d
 \end{figure}
 
 \subsection{Análisis Cualitativo}
-En el centro del río la pendiente es máxima y conforme nos acercamos a las orillas la pendiente disminuye hasta llegar a ser cero en las orillas. Esto indica que la velocidad del agua es máxima en el centro y mínima en las orillas. El patrón es simétrico, por lo cual la función se comporta de manera similar a ambos lados del centro del río.
+En el centro del río la pendiente es máxima y conforme se acerca a las orillas la pendiente disminuye hasta llegar a ser cero. Esto indica que la velocidad del agua es máxima en el centro y mínima en las orillas. El patrón es simétrico, por lo cual la función se comporta de manera similar a ambos lados del centro del río.
 
 \section{Métodos Numéricos}
 
-Existen formas de obtener el valor de un punto $x$ sin necesidad de resolver la ecuación diferencial, solo necesitamos conocer el valor de la función en un punto $x_0$. Estos son los llamados métodos numéricos, los más comunes actualmente son: Euler, Euler Mejorado y Runge-Kutta de orden 4. Vamos a conocer un poco más acerca de cada uno de estos.
+Existen formas de obtener el valor de un punto $x$ sin necesidad de resolver la ecuación diferencial, solo se necesita conocer el valor de la función en un punto $x_0$. Estos son los llamados métodos numéricos, los más comunes actualmente son: Euler, Euler Mejorado y Runge-Kutta de orden 4.
 
 \subsection{Método de Euler}
 El método de Euler es un método numérico sencillo para resolver ecuaciones diferenciales ordinarias. Consiste en aproximar la solución de la ecuación utilizando una serie de pasos pequeños.
@@ -346,7 +352,7 @@ El método de Euler es un método numérico sencillo para resolver ecuaciones di
     \label{fig:Grafico_Euler}
 \end{figure}
 
-El método de Euler utiliza la recta tangente a la curva solución en un punto para poder ir aproximándose a la función real. Dado un punto $(x_0, y_0)$ y un incremento $h$ nos movemos en la función usando:
+El método de Euler utiliza la recta tangente a la curva solución en un punto para poder ir aproximándose a la función real. Dado un punto $(x_0, y_0)$ y un incremento $h$ se mueve en la función usando:
 
 \[
 L(x) = y_0 + f(x_0, y_0)(x - x_0)
@@ -358,9 +364,7 @@ x_{n+1} = x_n + h
 y_{n+1} = y_n + h f(x_n, y_n)
 \]
 
-Este método depende mucho del incremento que escojamos dado que para un $h$ muy pequeño nuestra aproximación será mucho mejor.
-
-\subsubsection{Análisis Numérico del Método de Euler}
+Este método depende mucho del incremento que se escoja dado que para un $h$ muy pequeño la aproximación será mucho mejor.
 
 Para la EDO: $\frac{dy}{dt} = f(t, y)$ con condición inicial $y(t_0) = y_0$, el método de Euler explícito es:
 \[
@@ -368,15 +372,15 @@ y_{n+1} = y_n + h f(t_n, y_n)
 \]
 donde $h$ es el tamaño del paso.
 
-\paragraph{Consistencia (¿Está Bien Planteado?)}
+\subsubsection{Consistencia (¿Está Bien Planteado?)}
 
-\subparagraph{Error Local de Truncamiento}
+\subparagraph{Error Local de Truncamiento:}
 El error de truncamiento local $\tau_n$ es:
 \[
 \tau_n = \frac{y(t_{n+1}) - y(t_n)}{h} - f(t_n, y(t_n))
 \]
 
-\subparagraph{Análisis de Consistencia}
+\subparagraph{Análisis de Consistencia:}
 Usando expansión de Taylor alrededor de $t_n$:
 \[
 y(t_{n+1}) = y(t_n) + h y'(t_n) + \frac{h^2}{2} y''(\xi_n)
@@ -387,41 +391,43 @@ Sustituyendo:
 \]
 \textbf{Conclusión}: El método es consistente de orden 1.
 
-\paragraph{Estabilidad}
+\subsubsection{Estabilidad}
 
-\subparagraph{Ecuación Test para Análisis}
-Consideramos la ecuación test: $y' = \lambda y$ con $\text{Re}(\lambda) < 0$.
+\subparagraph{Ecuación Test para Análisis:}
+Considerando la ecuación test: $y' = \lambda y$ con $\text{Re}(\lambda) < 0$.
 
-Aplicando Euler:
+Se aplica Euler:
 \[
 y_{n+1} = y_n + h \lambda y_n = (1 + h\lambda) y_n
 \]
 
-\subparagraph{Factor de Amplificación}
+\subparagraph{Factor de Amplificación:}
 El factor de amplificación es:
 \[
 G = 1 + h\lambda
 \]
 
-\subparagraph{Condición de Estabilidad}
+\subparagraph{Condición de Estabilidad:}
 Para estabilidad absoluta:
 \[
 |1 + h\lambda| \leq 1
 \]
 
-\subparagraph{Región de Estabilidad}
+\subparagraph{Región de Estabilidad:}
 La región de estabilidad en el plano complejo es un círculo de radio 1 centrado en $-1$.
 
-\paragraph{Evaluación General}
+\paragraph{Evaluación General:}
 
 \begin{itemize}
-\item \textbf{Consistencia}: SÍ está bien planteado (consistente de orden 1)
-\item \textbf{Estabilidad}: Condicionalmente estable
-\item \textbf{Convergencia}: Por el Teorema de Lax, es convergente de orden 1
-\item \textbf{Complejidad Temporal}: $O(n)$ donde $n = (x_f - x_0)/h$
+\item \textbf{Consistencia}: Sí está bien planteado (es consistente de orden 1),
+\item \textbf{Estabilidad}: Condicionalmente estable,
+\item \textbf{Convergencia}: Por el Teorema de Lax, es convergente de orden 1,
+\item \textbf{Complejidad Temporal}: $O(n)$ donde $n = (x_f - x_0)/h$.
 \end{itemize}
 
-\paragraph{Limitaciones Prácticas}
+
+   
+\paragraph{Limitaciones Prácticas:}
 \subsection{Método de Euler Mejorado}
 
 El método de Euler Mejorado es mejor que el método de Euler en aproximaciones. Este método, dado un punto inicial $(x_0, y_0)$, utiliza las fórmulas:
@@ -442,15 +448,15 @@ El método de Euler mejorado está \textbf{bien planteado} porque satisface:
 \]
 
 \item \textbf{Estabilidad Cero}: 
-El método es estable para una clase más amplia de problemas que Euler simple
+El método es estable para una clase más amplia de problemas que Euler simple.
 
 \item \textbf{Convergencia}: 
-Por el \textbf{Teorema de Lax}, al ser consistente y estable, es convergente
+Por el \textbf{Teorema de Lax}, al ser consistente y estable, es convergente.
 \end{enumerate}
 
 \subsubsection{Orden de Convergencia}
 
-\paragraph{Error Local de Truncamiento}
+\paragraph{Error Local de Truncamiento:}
 \[
 \tau_n = \frac{y(t_{n+1}) - y(t_n)}{h} - \frac{1}{2}[f(t_n, y_n) + f(t_{n+1}, y_n + h f(t_n, y_n))]
 \]
@@ -459,21 +465,21 @@ Expandiendo en serie de Taylor:
 \tau_n = O(h^2)
 \]
 
-\paragraph{Error Global}
+\paragraph{Error Global:}
 \[
 \max |y_n - y(t_n)| = O(h^2)
 \]
-\textbf{Conclusión}: Método de \textbf{orden 2}
+\textbf{Conclusión}: Método de \textbf{orden 2}.
 
 \subsubsection{Complejidad Temporal}
 
-\paragraph{Por Paso}
+\paragraph{Por Paso:}
 \begin{itemize}
-\item \textbf{2 evaluaciones} de la función $f(t,y)$ por iteración
-\item \textbf{Operaciones aritméticas}: $O(1)$ por paso
+\item \textbf{2 evaluaciones} de la función $f(t,y)$ por iteración.
+\item \textbf{Operaciones aritméticas}: $O(1)$ por paso.
 \end{itemize}
 
-\paragraph{Complejidad Total}
+\paragraph{Complejidad Total:}
 Para $N = \frac{T}{h}$ pasos:
 \[
 C_{\text{total}} = O(N) = O\left(\frac{1}{h}\right)
@@ -481,9 +487,9 @@ C_{\text{total}} = O(N) = O\left(\frac{1}{h}\right)
 \subsubsection{Relación Precisión vs Costo Computacional}
 
 \begin{itemize}
-\item \textbf{Costo por unidad de precisión}: $O(1/\sqrt{\epsilon})$
-\item \textbf{Eficiencia}: Mejor que Euler simple para misma precisión
-\item \textbf{Compromiso}: Mayor costo por paso que Euler, pero menos pasos para misma precisión
+\item \textbf{Costo por unidad de precisión}: $O(1/\sqrt{\epsilon})$.
+\item \textbf{Eficiencia}: Mejor que Euler simple para misma precisión.
+\item \textbf{Compromiso}: Mayor costo por paso que Euler, pero menos pasos para misma precisión.
 \end{itemize}
 
 \subsection{Método de Runge-Kutta (RK4)}
@@ -504,38 +510,38 @@ y_{n+1} &= y_n + \tfrac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4)
 
 \subsubsection{¿Por qué está Bien Planteado?}
 \begin{itemize}
-\item \textbf{Consistencia}: Error local de truncamiento $O(h^5)$
-\item \textbf{Estabilidad}: Región de estabilidad más amplia que Euler
-\item \textbf{Convergencia}: Orden 4 garantizado por consistencia + estabilidad
+\item \textbf{Consistencia}: Error local de truncamiento $O(h^5)$.
+\item \textbf{Estabilidad}: Región de estabilidad más amplia que Euler.
+\item \textbf{Convergencia}: Orden 4 garantizado por consistencia + estabilidad.
 \end{itemize}
 
 \subsubsection{Orden de Convergencia}
 \begin{itemize}
-\item \textbf{Error local}: $O(h^5)$
-\item \textbf{Error global}: $O(h^4)$ → \textbf{Método de orden 4}
-\item Reduciendo $h$ a la mitad, error disminuye $\approx 16$ veces
+\item \textbf{Error local}: $O(h^5)$.
+\item \textbf{Error global}: $O(h^4)$ → \textbf{Método de orden 4}.
+\item Reduciendo $h$ a la mitad, el error disminuye $\approx 16$ veces.
 \end{itemize}
 
 \subsubsection{Complejidad Temporal}
 \begin{itemize}
-\item \textbf{Por paso}: 4 evaluaciones de $f(x,y)$
-\item \textbf{Total}: $O(1/h)$ operaciones para intervalo $[a,b]$
-\item \textbf{Eficiencia}: Óptimo para alta precisión con $h$ moderado
+\item \textbf{Por paso}: 4 evaluaciones de $f(x,y)$.
+\item \textbf{Total}: $O(1/h)$ operaciones para intervalo $[a,b]$.
+\item \textbf{Eficiencia}: Óptimo para alta precisión con $h$ moderado.
 \end{itemize}
 
 \subsubsection{Ventajas Clave}
 \begin{itemize}
-\item \textbf{Alta precisión} con tamaño de paso razonable
-\item \textbf{Autónomo}: No necesita información de pasos anteriores
-\item \textbf{Fácil implementación} vs métodos multipaso
-\item \textbf{Versátil}: Aplicable a sistemas de EDOs
+\item \textbf{Alta precisión} con tamaño de paso razonable.
+\item \textbf{Autónomo}: No necesita información de pasos anteriores.
+\item \textbf{Fácil implementación} vs métodos multipaso.
+\item \textbf{Versátil}: Aplicable a sistemas de EDOs.
 \end{itemize}
 
 \subsubsection{Limitaciones}
 \begin{itemize}
-\item \textbf{Costo computacional}: 4 evaluaciones por paso
-\item \textbf{Estabilidad condicional} en problemas stiff
-\item \textbf{No adaptativo} en versión básica
+\item \textbf{Costo computacional}: 4 evaluaciones por paso.
+\item \textbf{Estabilidad condicional} en problemas stiff.
+\item \textbf{No adaptativo} en versión básica.
 \end{itemize}
 %-----------------------------------------------------------------------------------
 \subsection{Análisis de los Resultados}
@@ -574,42 +580,73 @@ Costo & Bajo & Medio & Alto \\
 La elección del método numérico adecuado debe basarse en el equilibrio entre precisión requerida, costo computacional aceptable y complejidad de implementación, considerando las características específicas del problema a resolver.
 
 
-\section*{Análisis de Bifurcación en Modelo de Velocidad}
+\section{Análisis de Bifurcación en Modelo de Velocidad}
 
-\subsection*{Problema}
-Considere la EDO que modela cambios de régimen en velocidad escalar $z(t)$:
-\[
-\frac{dz}{dt} = \mu z - z^2
-\]
-donde $\mu$ es un parámetro de control que representa la efectividad del avance.
+\subsection{Planteamiento del Problema}
+Se considera la ecuación diferencial ordinaria unidimensional con un parámetro real \(\mu\):
+\begin{equation}
+\label{eq:main}
+\frac{dz}{dt} \;=\; \mu z - z^{2} \;=\; z(\mu - z)
+\end{equation}
+donde $\mu$ representa la efectividad del avance.
+Esta ecuación sirve como \emph{forma normal} para describir un intercambio de estabilidad entre dos ramas de equilibria y aparece frecuentemente en modelos sencillos de población, dinámica de control y problemas de transferencia efectiva de pulso/velocidad.
 
-\subsection*{1. Puntos de Equilibrio}
-Los puntos de equilibrio se obtienen resolviendo $\frac{dz}{dt} = 0$:
-\[
-\mu z - z^2 = z(\mu - z) = 0
-\]
-\begin{center}
-\boxed{z = 0 \quad \text{y} \quad z = \mu}
-\end{center}
-
-\subsection*{2. Análisis de Estabilidad}
-La derivada es $f'(z) = \mu - 2z$. Evaluamos en los equilibrios:
-
+En el contexto del \emph{problema del nadador} que se aborda, se interpreta \(z(t)\) como una velocidad vertical o escalar efectiva —por ejemplo la componente neta de avance resultante de la relación entre la capacidad de nado/control del nadador y la corriente— y \(\mu\) como un parámetro que mide la \emph{efectividad relativa} del nado frente a la corriente (o la ganancia del control de rumbo). El objetivo de esta parte es:
 \begin{itemize}
-\item \textbf{Punto $z = 0$}: $f'(0) = \mu$
-  \begin{itemize}
-  \item $\mu < 0$: $f'(0) < 0$ → \textbf{Estable}
-  \item $\mu > 0$: $f'(0) > 0$ → \textbf{Inestable}
-  \end{itemize}
-
-\item \textbf{Punto $z = \mu$}: $f'(\mu) = \mu - 2\mu = -\mu$
-  \begin{itemize}
-  \item $\mu < 0$: $f'(\mu) > 0$ → \textbf{Inestable}
-  \item $\mu > 0$: $f'(\mu) < 0$ → \textbf{Estable}
-  \end{itemize}
+  \item hallar los puntos de equilibrio en función de \(\mu\);
+  \item analizar su existencia y propiedades cualitativas;
+  \item preparar la construcción del diagrama de bifurcación en el plano \((\mu,z)\) y su interpretación física.
 \end{itemize}
+Por claridad, se observa de entrada que la ecuación \eqref{eq:main} es un caso autónomo y escalar, por lo que su comportamiento cualitativo puede caracterizarse completamente por el estudio de los puntos críticos, la derivada de la función vector campo y las trayectorias en la recta real.
 
-\subsection*{3. Diagrama de Bifurcación}
+\subsection{Puntos de Equilibrio}
+Los puntos de equilibrio (o puntos críticos) se obtienen resolviendo
+\[
+\mu z - z^{2} = 0.
+\]
+Factorizando la expresión obtenemos
+\[
+z(\mu - z)=0,
+\]
+de donde las soluciones son
+\begin{equation}
+\label{eq:equilibria}
+z_{1}(\mu)=0, \qquad z_{2}(\mu)=\mu.
+\end{equation}
+
+Observaciones inmediatas:
+\begin{enumerate}
+  \item Ambas ramas de equilibria existen para todo \(\mu\in\mathbb{R}\). Las dos ramas se intersectan en el punto \((\mu,z)=(0,0)\).
+  \item La rama \(z_1(\mu)=0\) es la \emph{rama trivial}; la rama \(z_2(\mu)=\mu\) es la \emph{rama no trivial} (depende linealmente de \(\mu\)).
+  \item El punto de bifurcación candidato es \(\mu_{c}=0\), puesto que en ese valor las dos soluciones coinciden y se espera un intercambio de estabilidad (esto será verificado mediante análisis lineal en la sección siguiente).
+\end{enumerate}
+
+\subsection{Análisis de Estabilidad}
+Para estudiar la estabilidad de los puntos de equilibrio \eqref{eq:equilibria} calculamos la derivada del campo
+\[
+f(z)=\mu z - z^{2},\qquad f'(z)=\mu-2z.
+\]
+La estabilidad local de un equilibrio en un sistema autónomo escalar se determina por el signo de \(f'\) en dicho equilibrio. Evaluando en las dos ramas obtenemos:
+\[
+f'(z_1)=f'(0)=\mu,\qquad f'(z_2)=f'(\mu)=\mu-2\mu=-\mu.
+\]
+
+\paragraph{Casos y conclusiones:}
+\begin{itemize}
+  \item Para la rama \(z_1=0\):
+    \begin{itemize}
+      \item Si \(\mu<0\), entonces \(f'(0)<0\) y \(z=0\) es \emph{estable} (atractor).
+      \item Si \(\mu>0\), entonces \(f'(0)>0\) y \(z=0\) es \emph{inestable} (repulsor).
+    \end{itemize}
+  \item Para la rama \(z_2=\mu\):
+    \begin{itemize}
+      \item Si \(\mu<0\), entonces \(f'(\mu)=-\mu>0\) y \(z=\mu\) es \emph{inestable}.
+      \item Si \(\mu>0\), entonces \(f'(\mu)=-\mu<0\) y \(z=\mu\) es \emph{estable}.
+    \end{itemize}
+\end{itemize}
+Por tanto, al atravesar \(\mu=0\) se produce un intercambio de estabilidad entre las ramas \(z=0\) y \(z=\mu\). Esto se confirma también con un análisis gráfico sencillo en la recta real (diagrama de líneas de fase) para valores representativos de \(\mu\).
+
+\subsection{Diagrama de Bifurcación}
 
 \begin{figure}[H]
 \centering
@@ -617,58 +654,40 @@ La derivada es $f'(z) = \mu - 2z$. Evaluamos en los equilibrios:
 \caption{Diagrama de bifurcación transcrítica}
 \end{figure}
 
-\textbf{Tipo de bifurcación}: \textbf{Transcrítica}
+\subsection{Interpretación física cualitativa}
+Se discute en detalle el significado físico de las soluciones y la dependencia con el parámetro \(\mu\). Recordando la ecuación
+\[
+\dot z=\mu z - z^{2}=z(\mu-z),
+\]
+se interpreta \(z(t)\) como la magnitud efectiva de avance (componente neta de velocidad o capacidad de avanzar del nadador) y \(\mu\) como un parámetro de \emph{efectividad relativa} —puede representar, por ejemplo, la diferencia entre la fuerza de propulsión/control del nadador y la intensidad de la corriente, o bien una ganancia en un esquema de control de rumbo.
 
-\textbf{Características}:
+\subsubsection{Significado de las ramas de equilibrio}
+Las dos ramas de equilibrio \(z=0\) y \(z=\mu\) permiten lecturas físicas claras:
 \begin{itemize}
-\item Dos ramas de puntos fijos se intersectan en $\mu = 0$
-\item Intercambio de estabilidad en el punto de bifurcación
-\item Ambas ramas existen para todo $\mu$
+  \item \(z=0\) (rama trivial). Representa el estado sin avance neto: el nadador no consigue progresar aguas arriba (o su avance neto es nulo). Es la solución “no-desplazamiento”.
+  \item \(z=\mu\) (rama no trivial). Para \(\mu>0\) esta rama es positiva y representa un avance sostenido cuyo valor crece linealmente con la eficacia \(\mu\). Para \(\mu<0\) la rama es negativa (avance en sentido contrario o ausencia de interpretación física si se restringe \(z\ge0\)).
 \end{itemize}
 
-\subsection*{Interpretación Cualitativa}
-
-El parámetro $\mu$ representa el balance entre propulsión y resistencia:
-
-\textbf{$\mu < 0$ (Régimen sin avance)}:
+\subsubsection{Cambio de signo de \(\mu\) — umbral y consecuencias}
+El punto crítico \(\mu_c=0\) es el umbral entre dos regímenes cualitativamente distintos:
+  
 \begin{itemize}
-\item Punto estable: $z = 0$
-\item El sistema tiende a velocidad cero
-\item La resistencia domina sobre la propulsión
-\item Interpretación física: "Quedarse sin avance"
+\item {De $\mu < 0$ a $\mu > 0$}: El sistema pasa de un régimen donde no puede avanzar a uno donde sí puede. La velocidad estable cambia de cero a un valor positivo proporcional a $\mu$.
+
+\item {De $\mu > 0$ a $\mu < 0$}: El sistema pierde la capacidad de avanzar y se estabiliza en reposo. Esto podría representar, por ejemplo, un nadador que ya no puede contrarrestar la corriente.
+
+\item {En $\mu = 0$}: Situación crítica donde ambos equilibrios coinciden y hay indiferencia entre avanzar o no avanzar.
 \end{itemize}
 
-\textbf{$\mu > 0$ (Régimen con avance)}:
-\begin{itemize}
-\item Punto estable: $z = \mu$
-\item El sistema alcanza velocidad positiva
-\item La propulsión domina sobre la resistencia
-\item Interpretación física: "Lograr avance efectivo"
-\end{itemize}
-
-\textbf{Transición crítica en $\mu = 0$}:
-\begin{itemize}
-\item Punto de bifurcación transcrítica
-\item Intercambio de estabilidad entre $z = 0$ y $z = \mu$
-\item Cambio cualitativo en el comportamiento del sistema
-\item Umbral entre imposibilidad y posibilidad de avance
-\end{itemize}
-
-\subsection*{Significado Físico del Cambio de Signo}
-
-El cambio de signo de $\mu$ marca una transición fundamental:
-
-\begin{itemize}
-\item \textbf{De $\mu < 0$ a $\mu > 0$}: El sistema pasa de un régimen donde no puede avanzar a uno donde sí puede. La velocidad estable cambia de cero a un valor positivo proporcional a $\mu$.
-
-\item \textbf{De $\mu > 0$ a $\mu < 0$}: El sistema pierde la capacidad de avanzar y se estabiliza en reposo. Esto podría representar, por ejemplo, un nadador que ya no puede contrarrestar la corriente.
-
-\item \textbf{En $\mu = 0$}: Situación crítica donde ambos equilibrios coinciden y hay indiferencia entre avanzar o no avanzar.
-\end{itemize}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{Graficas/Diagrama.jpg}
+\caption{Diagrama de línea de fase}
+\end{figure}
 
 
 % Seccion del Plano de Fase 
-\section{ Sistemas autónomos, plano de fase,y estabilidad }
+\section{Sistemas autónomos, plano de fase y estabilidad }
 
 \subsection{Sistemas autónomos}
 Un \textbf{sistema autónomo} se define como aquel conjunto de ecuaciones diferenciales ordinarias en el que la evolución depende únicamente de las variables de estado y no explícitamente del tiempo. Formalmente, puede escribirse como:
@@ -680,7 +699,7 @@ Un \textbf{sistema autónomo} se define como aquel conjunto de ecuaciones difere
 
 donde $f$ y $g$ son funciones continuamente diferenciables.
 
-Analicemos el siguiente sistema autónomo según ciertos criterios que iremos introduciendo poco a poco:
+Analicemos el siguiente sistema autónomo según ciertos criterios que se introducirán paso a paso:
 
 \[
 \begin{aligned}
@@ -689,7 +708,7 @@ Analicemos el siguiente sistema autónomo según ciertos criterios que iremos in
 \end{aligned}
 \]
 
-En su forma matricial :
+En su forma matricial:
 
 \[
 \dot{\mathbf{x}} = A\,\mathbf{x},
@@ -714,7 +733,7 @@ A =
 El estudio de sistemas autónomos se apoya en el \textbf{plano de fase} como herramienta central para visualizar y comprender la evolución temporal de un sistema en función de sus variables de estado.
 
 
-En este espacio bidimensional, cada punto representa un estado posible del sistema, mientras que las trayectorias que son curvas paramétricas $(x(t), y(t))$ que satisfacen el sistema,  muestran cómo dicho estado cambia con el tiempo bajo la acción de las ecuaciones diferenciales que lo gobiernan.Posee además un campo vectorial $\vec{F}(x, y) = (f(x, y), g(x, y))$ indica la dirección del flujo .Esta  representación no sólo facilita la interpretación cualitativa de la dinámica, sino que también permite identificar patrones globales de comportamiento.
+En este espacio bidimensional, cada punto representa un estado posible del sistema, mientras que las trayectorias que son curvas paramétricas $(x(t), y(t))$ que satisfacen el sistema, muestran cómo dicho estado cambia con el tiempo bajo la acción de las ecuaciones diferenciales que lo gobiernan. Posee además un campo vectorial $\vec{F}(x, y) = (f(x, y), g(x, y))$ indica la dirección del flujo. Esta  representación no sólo facilita la interpretación cualitativa de la dinámica, sino que también permite identificar patrones globales de comportamiento.
 \subsection{Puntos Críticos o de Equilibrio}
 Un punto crítico o punto de equilibrio $(x_0, y_0)$ es una solución constante del sistema, es decir:
 
@@ -787,7 +806,7 @@ la estabilidad se determina a partir de los \textbf{valores propios} de la matri
 
 \subsubsection{Ejemplo aplicado al sistema dado}
 
-Para el sistema:
+Para el sistema
 
 
 \[
@@ -799,7 +818,7 @@ A =
 \]
 
 
-los valores propios se obtienen resolviendo:
+los valores propios se obtienen resolviendo
 
 
 \[
@@ -884,7 +903,7 @@ La parte real es negativa ($-3/2$), por lo que:
 \boxed{\text{El equilibrio en $(0,0)$ es un foco estable (espiral convergente).}}
 \]
 
-Mostremos el plano de Fase de el sistema planteado:
+A continuación el plano de fase del sistema planteado:
 
 
 \begin{figure}[H]
@@ -905,12 +924,39 @@ El plano de fase no sólo proporciona una representación visual de la dinámica
 
 En síntesis, el plano de fase y el concepto de estabilidad constituyen la base para el análisis cualitativo de sistemas autónomos. Esta perspectiva será esencial para los ejercicios que se desarrollarán en las siguientes secciones, donde se aplicarán estas nociones a ejemplos concretos.
 
+\section{Conclusiones}
 
+\begin{itemize}
+  \item Se derivaron y resolvieron analíticamente dos variantes del \emph{problema del nadador} (perfil $1-x^2/a^2$ y perfil $1-x^4/a^4$), obteniéndose expresiones explícitas para las trayectorias que permiten interpretar cuantitativamente el arrastre por la corriente.
+  \item La comparación de métodos numéricos mostró la relación clásica entre orden y coste: Euler (orden 1) es sencillo pero poco preciso; Euler mejorado (orden 2) mejora significativamente la precisión con un coste moderado; RK4 (orden 4) ofrece alta precisión a costa de más evaluaciones por paso.
+  \item Los análisis de consistencia, estabilidad y convergencia confirman que los esquemas implementados son adecuados para problemas no \emph{stiff}. Para problemas con rigidez habría que considerar métodos implícitos o solvers adaptativos.
+  \item El estudio de bifurcación de la ecuación $\dot z=\mu z - z^2$ revela una bifurcación \emph{transcrítica} en $\mu=0$, con intercambio de estabilidad entre las ramas $z=0$ y $z=\mu$. Esto tiene interpretación física clara en el contexto del problema: existe un umbral de efectividad $\mu$ que determina si el nadador puede mantener avance neto o no.
+  \item El análisis del plano de fase para el sistema lineal propuesto mostró valores propios conjugados con parte real negativa, por lo que el equilibrio $(0,0)$ es un \emph{foco asintóticamente estable} (espiral convergente), corroborado en la gráfica del campo vectorial.
+  \item En conjunto, el trabajo evidencia la sinergia entre análisis cualitativo (isoclinas, bifurcación, plano de fase) y métodos cuantitativos (integración numérica) para comprender la dinámica del sistema.
+\end{itemize}
 
+\section{Recomendaciones}
 
+\begin{enumerate}
+  \item Añadir comparaciones numéricas cuantitativas (tablas y gráficas de error) entre los métodos: error global frente a $h$, y tiempos de CPU para distintos $h$, para justificar la elección práctica de un método.
+  \item Incluir pruebas de convergencia (p. ej. cálculo del cociente de razones al reducir $h$) y curvas log-log de error vs paso para verificar los órdenes teóricos observados.
+  \item Incorporar un estudio de sensibilidad respecto a parámetros relevantes (por ejemplo la relación $v_0/v_S$ y el ancho del río $a$) y barridos de parámetros para la bifurcación $\mu$.
+  \item Para problemas potencialmente stiff, valorar métodos implícitos (Backward Euler, BDF) o integradores con paso adaptativo (RK45 con control de error) y documentar cuándo son necesarios.
+  \item Mejorar el modelo físico si se desea mayor realismo: perfiles de velocidad más complejos (p. ej. medidos experimentalmente), inclusión de dependencias temporales o ruido, y validación con datos/experimentos si están disponibles.
+\end{enumerate}
 
+\begin{thebibliography}{9}
 
+\bibitem{zill2009}
+D. G. Zill, \emph{A First Course in Differential Equations with Modeling Applications}, 9th ed., Brooks/Cole (Cengage Learning), Belmont, CA, 2009.
 
+\bibitem{strogatz2018}
+S. H. Strogatz, \emph{Nonlinear Dynamics and Chaos: With Applications to Physics, Biology, Chemistry, and Engineering}, 2nd ed., CRC Press / Taylor \& Francis Group, Boca Raton, FL, 2018.
+
+\bibitem{edwards2002}
+C. H. Edwards and D. E. Penney, \emph{Calculus}, 6th ed., Prentice Hall (Pearson), Upper Saddle River, NJ, 2002.
+
+\end{thebibliography}
 
 
 
