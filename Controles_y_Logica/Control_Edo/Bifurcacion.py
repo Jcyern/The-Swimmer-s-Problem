@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from Controles_y_Logica.Logica.Edo.Bifurcacion_Log import estabilidad_punto_fijo
 
 def Bifurcacion(miu_min, miu_max_, valores_rep, x_min, x_max, y_min, y_max):
-    st.header("En esta parte se podra observar el Diagrama de Bifurcacion con su explicacion correspondiente")
+    st.header("En esta parte se podra observar el Diagrama de Bifurcación con su explicación correspondiente")
     miu = np.linspace(miu_min, miu_max_, valores_rep)
     miu_estables, x_estables, miu_inestables, x_inestables,x_b, y_b = estabilidad_punto_fijo(miu)
     
@@ -24,7 +24,7 @@ def Bifurcacion(miu_min, miu_max_, valores_rep, x_min, x_max, y_min, y_max):
     st.pyplot(fix)
     columna1, columna2 = st.columns(2)
     with columna1:
-        st.subheader("🧑🏻‍🏫 Explicacion del Diagrama de Bifurcacion")
+        st.subheader("🧑🏻‍🏫 Explicación del Diagrama de Bifurcación")
         st.write(f'Rango de μ: [{miu_min}, {miu_max_}]')
         st.write(f'Número de puntos evaluados: {valores_rep}')
         st.markdown(r"""

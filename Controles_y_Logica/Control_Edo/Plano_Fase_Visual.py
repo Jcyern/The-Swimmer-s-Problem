@@ -97,7 +97,7 @@ def mostrar_mi_grafico(panel, edo):
 
     with panel:
         with edo:
-            st.header("Parametros del Plano de Fase")
+            st.header("Parámetros del Plano de Fase")
             col_1,col_2 = st.columns(2)
             y_min = col_1.number_input("Mínimo eje y", value=-6)
             y_max = col_2.number_input("Máximo eje y", value=6)

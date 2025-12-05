@@ -31,19 +31,19 @@ def Isoclinas_VS(Funcion, rango_x, rango_y,a, v0,xlim,ylim, x_min, y_min,vs, x_v
     if curvas_sol_ok:
         ax.legend()
     st.pyplot(fig)
-    #Esta es la informacion del metodo de las isoclinas
-    st.subheader("👩🏼‍💼Explicacion del Metodo de las Isoclinas")
-    st.markdown("El metodo de las isoclinas es una tecnica grafica que se utiliza para analizar la forma que toma la solucion de una ecuacion diferencial de primer orden sin necesidad de resolverla de manera explicita. Consiste " \
-    "en darle valores a la derivada en diferentes puntos del plano xy y dado estas trazar segmentos pequeños que representen la pendiente en esos puntos. Al unir estos segmentos, se obtiene una aproximacion visual de las curvas solucion de la ecuacion diferencial. Este metodo es especialmente util para ecuaciones diferenciales no lineales o cuando la solucion explicita es dificil de obtener.")
+    #Esta es la información del método de las isoclinas
+    st.subheader("👩🏼‍💼Explicación del Método de las Isoclinas")
+    st.markdown("El método de las isoclinas es una técnica gráfica que se utiliza para analizar la forma que toma la solución de una ecuación diferencial de primer orden sin necesidad de resolverla de manera explícita. Consiste " \
+    "en darle valores a la derivada en diferentes puntos del plano xy y dado estos trazar segmentos pequeños que representen la pendiente en esos puntos. Al unir estos segmentos, se obtiene una aproximación visual de las curvas solución de la ecuación diferencial. Este método es especialmente útil para ecuaciones diferenciales no lineales o cuando la solución explícita es difícil de obtener.")
 
 def Solve_VS(x0,y0, a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok):
-    "Resuelve la ecuacion diferencial con las condiciones iniciales"
-    st.header("Asi se ve la curva de la solucion analitica de nuestro problema 📊")
-    # Creacion de Grafico
+    "Resuelve la ecuación diferencial con las condiciones iniciales"
+    st.header("Así se ve la curva de la solución analítica de nuestro problema 📊")
+    # Creación de Gráfico
     solucion, ax2= plt.subplots(figsize=(8, 6))
     ax2.set_xlabel('Velocidad del nadador', fontsize=12)
     ax2.set_ylabel('Velocidad con la que fluye el agua', fontsize=12)
-    ax2.set_title('Curva solucion', fontsize=14)
+    ax2.set_title('Curva solución', fontsize=14)
     plt.xlim(x_min,x_max) 
     plt.ylim(y_min,y_max)
     ax2.grid(True, alpha=0.3)
@@ -52,7 +52,7 @@ def Solve_VS(x0,y0, a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok):
     C = sd(x0, y0, a, v0, vs)
     x = np.linspace(x_min, x_max, int(x_max)*1000)
     curva_solucion = cg(x, a, v0, vs, C)
-    ax2.plot(x, curva_solucion, 'b', label='Solucion Analitica')
+    ax2.plot(x, curva_solucion, 'b', label='Solución Analítica')
     ax2.legend()
     # Encontrar el valor en y para el x dado
     if punto_ok:
@@ -64,10 +64,10 @@ def Solve_VS(x0,y0, a, v0, x_max, x_min,vs, y_min, y_max, xval, punto_ok):
         ax2.legend()
         st.pyplot(solucion)
     st.header("ℹ️ Información")
-    st.info("En el panel de 📚Ecuaciones Diferenciales Ordinarias se pueden cambiar los valores de la curva para observar el como se comporta en diferentes valores iniciales, asi como modificar los limites de los ejes y los parametros como la velocidad del nadador, la velocidad del rio o ancho de este.")
+    st.info("En el panel de 📚Ecuaciones Diferenciales Ordinarias se pueden cambiar los valores de la curva para observar el como se comporta en diferentes valores iniciales, asi como modificar los límites de los ejes y los parámetros como la velocidad del nadador, la velocidad del río o ancho de este.")
 
 def Valor_en_Y_VS(x,v0, vs, a, C):
-    "Calcula el valor en x de la solucion"
+    "Calcula el valor en x de la solución"
     y = Valor_en_Y(x, C, v0, vs, a)
     return y
 
@@ -77,8 +77,8 @@ def Explicacion(punto_ok, x0, y0, a, v0, vs, x, y, C):
     if punto_ok:
         with col1:
             st.subheader("📊 Datos de la solución")
-            st.write(f'Condicion inicial: ({x0}, {y0})')
-            st.write(f"Constante de Integracion C: {C:.4f}")
+            st.write(f'Condición inicial: ({x0}, {y0})')
+            st.write(f"Constante de Integración : {C:.4f}")
             st.write(f"Valor en x = {x:.20f}: y = {y:.20f}")
 
         with col2:

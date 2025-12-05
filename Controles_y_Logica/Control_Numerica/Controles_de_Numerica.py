@@ -109,13 +109,13 @@ def Metodos_Numerico(x0,y0, minx, maxx, miny, maxy, comparar, metodo_comparar, a
 
                         st.pyplot(fig)
                 st.subheader("ℹ️ Información")
-                st.info("El incremento se le podra pasar en el panel de los parametros en la parte de 🧮Matematica Numerica, "
-                "de la misma forma se puede seleccionar el metodo que sea comparar")
+                st.info("El incremento se le podrá pasar en el panel de los parámetros en la parte de 🧮 Matemática Numérica, "
+                "de la misma forma se puede seleccionar el método que desee comparar")
 
 def Errores_Numericos():
-        "Aqui se veran los errore numericos que ocurren con un ejemplo dado"
-        st.header("Una vista a los errores numericos de los metodos de Euler, Euler Mejorado y Runge Kutta")
-        st.markdown("Aqui se mostraran los errores numericos que se cometen con los metodos de Euler, Euler Mejorado y Runge Kutta, " \
+        "Aquí se verán los errores numéricos que ocurren con un ejemplo dado"
+        st.header("Una vista a los errores numéricos de los métodos de Euler, Euler Mejorado y Runge Kutta")
+        st.markdown("Aquí se mostrarán los errores numéricos que se cometen con los métodos de Euler, Euler Mejorado y Runge Kutta, " \
         "con un incremento de 0.01")
         x = -0.5
         a = 0.5
@@ -135,17 +135,17 @@ def Errores_Numericos():
         plt.xlim(-10,10)
         plt.ylim(-10,10)
         plt.grid()
-        ax.plot(rango_x,puntos_y,'r', label = 'Solucion Analitica')
-        ax.plot(puntosE_x, puntosE_y, 'b--', label = 'Euler')
-        ax.plot(puntosEM_x, puntosEM_y, 'y--', label = 'Euler Mejorado')
-        ax.plot(puntosRK_x, puntosRK_y, 'g--', label = 'Runge-Kutta 4')
+        ax.plot(rango_x, puntos_y, 'r', label='Solución Analítica')
+        ax.plot(puntosE_x, puntosE_y, 'b--', label='Euler')
+        ax.plot(puntosEM_x, puntosEM_y, 'y--', label='Euler Mejorado')
+        ax.plot(puntosRK_x, puntosRK_y, 'g--', label='Runge-Kutta 4')
         ax.legend()
         st.pyplot(grafico)
 
-        st.header("Explicacion 🧑🏻‍🏫")
-        st.markdown("Aqui se pueden ver algunos resultados comparados con los metodos" \
-        "tomamos como incremento el paso de 0.01 pero para un incremento más pequeño los metodos numericos serian mas exactos" \
-        "en el caso de Runge Kutta el error relativo no es 0 pero como este es un metodo bastante aproximado  podemos observar que el error cometido es demasiado pequeño pero no  0")
+        st.header("Explicación 🧑🏻‍🏫")
+        st.markdown("Aquí se pueden ver algunos resultados comparados con los métodos. " \
+        "Tomamos como incremento el paso de 0.01, pero para un incremento más pequeño los métodos numéricos serían más exactos. " \
+        "En el caso de Runge-Kutta, el error relativo no es 0, pero como este es un método bastante aproximado, podemos observar que el error cometido es demasiado pequeño, pero no 0.")
         List_euler, List_euler_mejorado, List_runge_kutta = Calcular_Errores_Numericos_Puntos_Fijos(C, h)
         data = {
                 'Puntos' : [ -1.5, -1, -0.5, 0, 0.5 , 1],
@@ -176,7 +176,7 @@ def Errores_Numericos():
         "xf : punto final \n\n" \
         "xo : punto inicial \n\n" \
         "h : incremento \n\n" 
-        "El orden de convergencia de los metodos numericos son \n\n" \
+        "El orden de convergencia de los métodos numéricos son \n\n" \
         "Euler : O(h) \n\n" \
         "Euler Mejorado : O(h²) \n\n" \
         "Runge Kutta : O(h⁴)")

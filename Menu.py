@@ -4,9 +4,9 @@ from Controles_y_Logica.Control_Numerica.Controles_de_Numerica import Metodos_Nu
 from Controles_y_Logica.Control_Edo.Plano_Fase_Visual import mostrar_mi_grafico
 
 #Titulo de la pagina
-st.set_page_config(page_title="Ecuaciones Diferenciales Ordinarias y Matematica Numerica", layout="wide")
+st.set_page_config(page_title="Ecuaciones Diferenciales Ordinarias y Matemática Numérica", layout="wide")
 #Inicio
-st.title("Bienvenidos al proyecto de Ecuaciones Diferenciales Ordinarias junto con Matematica Numerica😎")
+st.title("Bienvenidos al proyecto de Ecuaciones Diferenciales Ordinarias junto con Matemática Numérica😎")
 
 #Pestañas y panel
 tab1, tab2, tab3= st.tabs(["🏠Inicio", "📚EDO", "📈Numerica"])
@@ -19,7 +19,7 @@ with tab1 :
     col1 , col2 = st.columns([3,2])
     
     with col1:
-        st.header("Informacion")
+        st.header("Información")
         st.header("Tema 3: Problema del Nadador 🏊🏼‍♂️")
 
     with col2:
@@ -40,12 +40,12 @@ with tab2: # Ya es resolver la parte de Edo Completamente Comencemos por mi part
         edo = st.expander("📚 Ecuaciones Diferenciales Ordinarias")
         with edo:
             st.subheader("Condiciones iniciales")
-            st.subheader("Parametros del problema")
-            x0 = st.number_input("Valor inicial de x" , value = -0.50)
-            y0 = st.number_input("Valor inicial de y", value= 0.00)
-            a = st.number_input("Ancho del rio (a)", value= 0.5)
-            v0 = st.number_input("Velocidad del rio en la parte central (v0)", value= 9.00)
-            vs  = st.number_input("Velocidad del nadador (vs)", value= 3.00)
+            st.subheader("Parámetros del problema")
+            x0 = st.number_input("Valor inicial de x", value=-0.50)
+            y0 = st.number_input("Valor inicial de y", value=0.00)
+            a = st.number_input("Ancho del río (a)", value=0.5)
+            v0 = st.number_input("Velocidad del río en la parte central (v0)", value=9.00)
+            vs = st.number_input("Velocidad del nadador (vs)", value=3.00)
 
             st.header("Curvas Soluciones de las Isoclinas")
             curvas_sol_ok = st.checkbox("Desea ver como actuan las curvas solucion para diferentes valores iniciales")
@@ -129,7 +129,7 @@ with tab3:  #Esta pestaña es para la parte de Numerica solo
     )
 
     st.subheader("ℹ️ Información")
-    st.info("Los parametros que se utilizaron en la parte de Ecuaciones Diferenciales Ordinarias siguen influyendo en esta pestaña de Numerica por lo tanto " \
+    st.info("Los parámetros que se utilizaron en la parte de Ecuaciones Diferenciales Ordinarias siguen influyendo en esta pestaña de Numérica por lo tanto " \
     "para intentar cambiarlos podra hacerlo desde el mismo panel")
     if comparar_analitica:
         Metodos_Numerico(x0,
