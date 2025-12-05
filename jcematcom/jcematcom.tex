@@ -673,63 +673,133 @@ El cambio de signo de $\mu$ marca una transición fundamental:
 
 \item \textbf{En $\mu = 0$}: Situación crítica donde ambos equilibrios coinciden y hay indiferencia entre avanzar o no avanzar.
 \end{itemize}
-%----------------------------------------------------------------------------------
-\subsection{Listas Enumeradas}
 
-Para producir listas enumeradas, utilice el siguiente estilo:
-\begin{enumerate}
-    \item Primer Elemento
-    \item Segundo Elemento
-    \begin{enumerate}
-        \item Segundo Elemento - Subítem Uno
-        \item Segundo Elemento - Subítem Dos
-    \end{enumerate}
-\end{enumerate}
-%-----------------------------------------------------------------------------------
-Para producir cuerpos flotantes (figuras o tablas), asegúrese de numerar
-y etiquetar correctamente cada figura. Las referencias a las figuras deben
-estar correctamente etiquetadas. Por ejemplo, véase la Fig. \ref{fig:ex}\ldots
 
-\begin{figure}[h!]%
-	\begin{center}
-		\begin{tabular}{|c|c|c|} \hline
-			& Método 1 	& Método 2 	\\ \hline
-			A 			&  			&  			\\ \hline
-			B			& 			& 			\\ \hline
-			C 			& 			&  			\\ \hline
-		\end{tabular}
-		\caption{Figura de ejemplo. Recuerde especificar el origen de los datos que se muestran. \label{fig:ex}}
-	\end{center}
-\end{figure}
-%-----------------------------------------------------------------------------------
+% Seccion del Plano de Fase 
+\section{ Sistemas autónomos, plano de fase,y estabilidad }
 
-Para producir código fuente, envuélvalo en una figura flotante y
-etiquételo correctamente. Por ejemplo, en la Fig. \ref{fig:code}
-se muestra un código bastante conocido\ldots
+\subsection{Sistemas autónomos}
+Un \textbf{sistema autónomo} se define como aquel conjunto de ecuaciones diferenciales ordinarias en el que la evolución depende únicamente de las variables de estado y no explícitamente del tiempo. Formalmente, puede escribirse como:
 
-% Configuración de Listings
-\lstset{keywordstyle=\color{blue}, basicstyle=\small}
+\begin{align*}
+\frac{dx}{dt} &= f(x, y) \\
+\frac{dy}{dt} &= g(x, y)
+\end{align*}
 
-\begin{figure}[h!]%
-	\begin{lstlisting}[language=c]%
-		
-     int main(int argc, char** argv)
-     {
-         // Imprimiendo "Hola Mundo".
-         printf("Hello, World");
-     }
-		
-	\end{lstlisting}
-	\caption{Código fuente de ejemplo.\label{fig:code}}
-\end{figure}
+donde $f$ y $g$ son funciones continuamente diferenciables.
+
+Analicemos el siguiente sistema autónomo según ciertos criterios que iremos introduciendo poco a poco:
+
+\[
+\begin{aligned}
+\frac{dy}{dt} &= v, \\
+\frac{dv}{dt} &= -3\,v - 4\,y.
+\end{aligned}
+\]
+
+En su forma matricial :
+
+\[
+\dot{\mathbf{x}} = A\,\mathbf{x},
+\quad
+\mathbf{x} =
+\begin{pmatrix}
+y \
+\\
+v
+\end{pmatrix},
+\quad
+A =
+\begin{pmatrix}
+0 & 1 \\
+-4 & -3
+\end{pmatrix}.
+\]
 
 
 
-%===================================================================================
+
+El estudio de sistemas autónomos se apoya en el \textbf{plano de fase} como herramienta central para visualizar y comprender la evolución temporal de un sistema en función de sus variables de estado.
 
 
-\label{end}
+En este espacio bidimensional, cada punto representa un estado posible del sistema, mientras que las trayectorias que son curvas paramétricas $(x(t), y(t))$ que satisfacen el sistema,  muestran cómo dicho estado cambia con el tiempo bajo la acción de las ecuaciones diferenciales que lo gobiernan.Posee además un campo vectorial $\vec{F}(x, y) = (f(x, y), g(x, y))$ indica la dirección del flujo .Esta  representación no sólo facilita la interpretación cualitativa de la dinámica, sino que también permite identificar patrones globales de comportamiento.
+\subsection{Puntos Críticos o de Equilibrio}
+Un punto crítico o punto de equilibrio $(x_0, y_0)$ es una solución constante del sistema, es decir:
+
+\[
+\begin{aligned}
+  f(x_0, y_0) = 0 \\
+  g(x_0, y_0) = 0
+\end{aligned}
+\]
+Geométricamente, es un punto donde el campo vectorial se anula, por lo que si el sistema alcanza ese estado, permanece en él indefinidamente.
+
+
+Resolvamos los puntos críticos para el sistema antes dado :
+\[
+\begin{aligned}
+\frac{dy}{dt} &= v = 0 \\
+\frac{dv}{dt} &= -3v - 4y = 0
+\end{aligned}
+\]
+
+
+\[
+\begin{cases}
+v = 0 \\
+-3v - 4y = 0
+\end{cases}
+\]
+
+De la primera ecuación obtenemos directamente:
+\[
+v = 0.
+\]
+
+Sustituyendo $v = 0$ en la segunda ecuación:
+\[
+-3(0) - 4y = 0 \quad \Rightarrow \quad -4y = 0 \quad \Rightarrow \quad y_0 = 0.
+\]
+
+Por lo tanto, el único punto crítico es:
+\[
+\boxed{(y, v) = (0, 0)}.
+\]
+
+\subsection{Equilibrios y estabilidad}
+Dentro del plano de fase, los \textbf{puntos de equilibrio} corresponden a estados $x^*$ tales que $f(x^*)=0$. En estos puntos, el sistema permanece invariante en el tiempo. La noción de \textbf{estabilidad} se refiere a la respuesta del sistema frente a perturbaciones en torno a dichos equilibrios:
+\begin{itemize}
+    \item Un equilibrio es \textbf{estable} si las trayectorias que parten de condiciones iniciales cercanas permanecen próximas a él o tienden nuevamente hacia dicho punto.
+    \item Es \textbf{inestable} si pequeñas perturbaciones provocan que las trayectorias diverjan con el tiempo.
+    \item Se denomina \textbf{asintóticamente estable} cuando, además de ser estable, las trayectorias convergen al equilibrio conforme $t \to \infty$.
+\end{itemize}
+
+El análisis de estabilidad suele realizarse mediante la \textbf{linealización} del sistema alrededor de un equilibrio y el estudio de los autovalores de la matriz jacobiana. La naturaleza de dichos autovalores (reales o complejos, positivos o negativos) determina la clasificación del equilibrio como nodo, foco, centro o silla, cada uno con características geométricas particulares en el plano de fase.
+
+\subsection{Importancia del plano de fase}
+El plano de fase no sólo proporciona una representación visual de la dinámica, sino que también permite:
+\begin{itemize}
+    \item Identificar regiones de atracción y repulsión.
+    \item Reconocer trayectorias periódicas o ciclos límite.
+    \item Comparar el comportamiento de sistemas lineales y no lineales.
+    \item Anticipar fenómenos globales como bifurcaciones o transiciones de estabilidad.
+\end{itemize}
+
+En síntesis, el plano de fase y el concepto de estabilidad constituyen la base para el análisis cualitativo de sistemas autónomos. Esta perspectiva será esencial para los ejercicios que se desarrollarán en las siguientes secciones, donde se aplicarán estas nociones a ejemplos concretos.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
-
-%===================================================================================
